@@ -48,6 +48,7 @@ local Framework = {}; Framework.__index = Framework; do
     function Framework:Draw(Object, Properties)
         Object = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
+            if not Object[Property] then return end
             Object[Property] = Value
         end
         return Object
@@ -721,14 +722,14 @@ do -- ESP Functions
         Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1})
         Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
         Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
-        Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Distance = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.DistanceBold = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Tool = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.ToolBold = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Health = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.HealthBold = Framework:Draw("Text", {Font.new(Minecrafia), Size = 13, Center = true})
+        Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
+        Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 13, Center = true})
+        Components.Distance = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
+        Components.DistanceBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
+        Components.Tool = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
+        Components.ToolBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
+        Components.Health = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
+        Components.HealthBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
         Components.WeaponIcon = Framework:Draw("Image", {Data = Images.Bow})
