@@ -496,14 +496,15 @@ do -- Player Metatable
                     local WeaponIcon_Settings = ESP.Settings.WeaponIcon
                     local WeaponIcon_Position = WeaponIcon_Settings.Position
                     if WeaponIcon_Position == "Top" then 
-                        WeaponIcon.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
+                        WeaponIcon.Position = Vector2.new(X_Maximal + Box_Size.X, Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
                     elseif WeaponIcon_Position == "Bottom" then
-                        WeaponIcon.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
+                        WeaponIcon.Position = Vector2.new(Box_Size.X + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 10
                     end
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
+                    WeaponIcon.Size = Vector2.new(Box_Size.X,Box_Size.Y/2)
                     --
           
                     -- Health
@@ -699,7 +700,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = 2, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = self.Settings.Image.Raw,Size = Vector2.new(200,200)})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
         self.Objects[Instance] = Object
         return Object
     end
