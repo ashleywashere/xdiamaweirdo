@@ -722,14 +722,14 @@ do -- ESP Functions
         Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1})
         Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
         Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
-        Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Distance = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.DistanceBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Tool = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.ToolBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
-        Components.Health = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Outline = true, Center = true})
-        Components.HealthBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 13, Center = true})
+        Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 16, Outline = true, Center = true})
+        Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = Font.new(Minecrafia), Size = 16, Center = true})
+        Components.Distance = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Outline = true, Center = true})
+        Components.DistanceBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Center = true})
+        Components.Tool = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Outline = true, Center = true})
+        Components.ToolBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Center = true})
+        Components.Health = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Outline = true, Center = true})
+        Components.HealthBold = Framework:Draw("Text", {Font = Font.new(Minecrafia), Size = 16, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
         Components.WeaponIcon = Framework:Draw("Image", {Data = Images.Bow})
@@ -766,8 +766,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Name = Framework:Draw("Text", {Text = Object.Name, Color = col, Font.new(Minecrafia), Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Addition = Framework:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font.new(Minecrafia), Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Name = Framework:Draw("Text", {Text = Object.Name, Color = col, Font.new(Minecrafia), Size = 16, Outline = out, Center = true, Transparency = trans})
+        Components.Addition = Framework:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font.new(Minecrafia), Size = 16, Outline = out, Center = true, Transparency = trans})
         self.Objects[Instance] = Object
         return Object
     end
