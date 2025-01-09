@@ -390,20 +390,20 @@ do -- Player Metatable
                     -- Name
                     local Name_Settings = ESP.Settings.Name
                     local Name_Position = Name_Settings.Position
-                    if Name_Position == "Top" then 
+                    if Name_Position == "Top" and Name_Settings.Enabled then
                         Name.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Name.TextBounds.Y - Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
-                    elseif Name_Position == "Bottom" then
+                    elseif Name_Position == "Bottom" and Name_Settings.Enabled then
                         Name.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
                     elseif Name_Position == "Left" then
-                        if Healthbar_Position == "Left" then
+                        if Healthbar_Position == "Left" and Name_Settings.Enabled then
                             Name.Position = Health_Left_Pos_Outline - Vector2.new(Name.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         else
                             Name.Position = Health_Left_Pos_Outline - Vector2.new(Name.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         end
                         Left_Offset = Left_Offset + 10
-                    elseif Name_Position == "Right" then
+                    elseif Name_Position == "Right" and Name_Settings.Enabled then
                         if Healthbar_Position == "Right" then
                             Name.Position = Vector2.new(X_Maximal + Box_Size.X + 4 + 4 + Name.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
                         else
@@ -424,20 +424,20 @@ do -- Player Metatable
                     -- Distance
                     local Distance_Settings = ESP.Settings.Distance
                     local Distance_Position = Distance_Settings.Position
-                    if Distance_Position == "Top" then 
+                    if Distance_Position == "Top" and Distance_Settings.Enabled then 
                         Distance.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Distance.TextBounds.Y - Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
-                    elseif Distance_Position == "Bottom" then
+                    elseif Distance_Position == "Bottom" and Distance_Settings.Enabled then
                         Distance.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
-                    elseif Distance_Position == "Left" then
+                    elseif Distance_Position == "Left" and Distance_Settings.Enabled then
                         if Healthbar_Position == "Left" then
                             Distance.Position = Health_Left_Pos_Outline - Vector2.new(Distance.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         else
                             Distance.Position = Health_Left_Pos_Outline - Vector2.new(Distance.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         end
                         Left_Offset = Left_Offset + 10
-                    elseif Distance_Position == "Right" then
+                    elseif Distance_Position == "Right" and Distance_Settings.Enabled then 
                         if Healthbar_Position == "Right" then
                             Distance.Position = Vector2.new(X_Maximal + Box_Size.X + 4 + 4 + Distance.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
                         else
@@ -460,20 +460,20 @@ do -- Player Metatable
                     -- Tool
                     local Tool_Settings = ESP.Settings.Tool
                     local Tool_Position = Tool_Settings.Position
-                    if Tool_Position == "Top" then 
+                    if Tool_Position == "Top" and Tool_Settings.Enabled then 
                         Tool.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Tool.TextBounds.Y - Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
-                    elseif Tool_Position == "Bottom" then
+                    elseif Tool_Position == "Bottom" and Tool_Settings.Enabled then
                         Tool.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
-                    elseif Tool_Position == "Left" then
+                    elseif Tool_Position == "Left" and Tool_Settings.Enabled then
                         if Healthbar_Position == "Left" then
                             Tool.Position = Health_Left_Pos_Outline - Vector2.new(Tool.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         else
                             Tool.Position = Health_Left_Pos_Outline - Vector2.new(Tool.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         end
                         Left_Offset = Left_Offset + 10
-                    elseif Tool_Position == "Right" then
+                    elseif Tool_Position == "Right" and Tool_Settings.Enabled then
                         if Healthbar_Position == "Right" then
                             Tool.Position = Vector2.new(X_Maximal + Box_Size.X + 4 + 4 + Tool.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
                         else
@@ -496,10 +496,10 @@ do -- Player Metatable
                     -- WeaponIcon
                     local WeaponIcon_Settings = ESP.Settings.WeaponIcon
                     local WeaponIcon_Position = WeaponIcon_Settings.Position
-                    if WeaponIcon_Position == "Top" then 
+                    if WeaponIcon_Position == "Top" and WeaponIcon_Settings.Enabled then 
                         WeaponIcon.Position = Vector2.new(X_Maximal + Box_Size.X /2 , Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
-                    elseif WeaponIcon_Position == "Bottom" then
+                    elseif WeaponIcon_Position == "Bottom" and WeaponIcon_Settings.Enabled then
                         WeaponIcon.Position = Vector2.new((Box_Size.X-48)/2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
                     end
