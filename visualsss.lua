@@ -500,7 +500,7 @@ do -- Player Metatable
                         WeaponIcon.Position = Vector2.new((Box_Size.X-45)/2 + Box_Position.X, Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
                     elseif WeaponIcon_Position == "Bottom" and WeaponIcon_Settings.Enabled then
-                        WeaponIcon.Position = Vector2.new((Box_Size.X-45)/2 + Box_Position.X, Bottom_Offset) 
+                        WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
                     end
                     --WeaponIcon.Image = 
