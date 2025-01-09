@@ -75,7 +75,8 @@ local Images = {
     ["Saul Goodman"] = readfile("ESP/assets/saul_goodman.oh"),
     ["Peter Griffin"] = readfile("ESP/assets/peter_griffin.oh"),
     ["John Herbert"] = readfile("ESP/assets/john_herbert.oh"),
-    ["Fortnite"] = readfile("ESP/assets/fortnite.oh")
+    ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
+    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/image_2025-01-09_200022011-Photoroom.png"))
 }
 
 local ESP; ESP = {
@@ -700,7 +701,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = 2, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = Images.Bow})
         self.Objects[Instance] = Object
         return Object
     end
