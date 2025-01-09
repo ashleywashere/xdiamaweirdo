@@ -496,10 +496,10 @@ do -- Player Metatable
                     local WeaponIcon_Settings = ESP.Settings.WeaponIcon
                     local WeaponIcon_Position = WeaponIcon_Settings.Position
                     if WeaponIcon_Position == "Top" then 
-                        WeaponIcon.Position = Vector2.new(X_Maximal + Box_Size.X, Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
+                        WeaponIcon.Position = Vector2.new(X_Maximal + Box_Size.X /2 , Box_Position.Y) - Vector2.new(0, Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
                     elseif WeaponIcon_Position == "Bottom" then
-                        WeaponIcon.Position = Vector2.new(Box_Size.X + Box_Position.X, Bottom_Offset) 
+                        WeaponIcon.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 10
                     end
                     --WeaponIcon.Image = 
