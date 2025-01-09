@@ -76,7 +76,7 @@ local Images = {
     ["Peter Griffin"] = readfile("ESP/assets/peter_griffin.oh"),
     ["John Herbert"] = readfile("ESP/assets/john_herbert.oh"),
     ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
-    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/image_2025-01-09_200022011-Photoroom.png")
+    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png")
 }
 
 local ESP; ESP = {
