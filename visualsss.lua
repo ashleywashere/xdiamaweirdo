@@ -395,7 +395,7 @@ do -- Player Metatable
                         Top_Offset = Top_Offset + 10
                     elseif Name_Position == "Bottom" then
                         Name.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 10
+                        Bottom_Offset = Bottom_Offset + 12
                     elseif Name_Position == "Left" then
                         if Healthbar_Position == "Left" then
                             Name.Position = Health_Left_Pos_Outline - Vector2.new(Name.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
@@ -429,7 +429,7 @@ do -- Player Metatable
                         Top_Offset = Top_Offset + 10
                     elseif Distance_Position == "Bottom" then
                         Distance.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 10
+                        Bottom_Offset = Bottom_Offset + 12
                     elseif Distance_Position == "Left" then
                         if Healthbar_Position == "Left" then
                             Distance.Position = Health_Left_Pos_Outline - Vector2.new(Distance.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
@@ -465,7 +465,7 @@ do -- Player Metatable
                         Top_Offset = Top_Offset + 10
                     elseif Tool_Position == "Bottom" then
                         Tool.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 10
+                        Bottom_Offset = Bottom_Offset + 12
                     elseif Tool_Position == "Left" then
                         if Healthbar_Position == "Left" then
                             Tool.Position = Health_Left_Pos_Outline - Vector2.new(Tool.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
@@ -501,7 +501,7 @@ do -- Player Metatable
                         Top_Offset = Top_Offset + 10
                     elseif WeaponIcon_Position == "Bottom" then
                         WeaponIcon.Position = Vector2.new((Box_Size.X-48)/2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 10
+                        Bottom_Offset = Bottom_Offset + 12
                     end
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
@@ -516,7 +516,7 @@ do -- Player Metatable
                         Top_Offset = Top_Offset + 10
                     elseif Health_Position == "Bottom" then
                         Health.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 10
+                        Bottom_Offset = Bottom_Offset + 12
                     elseif Health_Position == "Left" then
                         if Healthbar_Position == "Left" then
                             Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
