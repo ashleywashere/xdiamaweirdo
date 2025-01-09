@@ -315,7 +315,7 @@ do -- Player Metatable
 
                     -- Offsets
                     local Top_Offset = 3
-                    local Bottom_Offset = Y_Maximal + 1
+                    local Bottom_Offset = Y_Maximal + 2
                     local Left_Offset = 0
                     local Right_Offset = 0
 
@@ -505,7 +505,7 @@ do -- Player Metatable
                     end
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
-                    WeaponIcon.Size = Vector2.new(45,45)
+                    WeaponIcon.Size = Vector2.new(35,35)
                     -- 
           
                     -- Health
