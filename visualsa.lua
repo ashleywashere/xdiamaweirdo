@@ -504,7 +504,7 @@ do -- Player Metatable
                     end
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
-                    WeaponIcon.Size = Vector2.new(Box_Size.X,Box_Size.Y)
+                    WeaponIcon.Size = Vector2.new(Box_Size.X,-Box_Size.Y)
                     -- 
           
                     -- Health
