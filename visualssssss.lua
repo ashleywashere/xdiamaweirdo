@@ -97,7 +97,7 @@ do --// Font
                         }}
                     };
                     
-                    writefile(Name .. ".font", HttpService:JSONEncode(Data));
+                    writefile(Name .. ".font", game:GetService("HttpService"):JSONEncode(Data));
                     return getcustomasset(Name .. ".font");
                 end;
                 
