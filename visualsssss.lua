@@ -152,7 +152,7 @@ function ESP:Get_Tool(Player)
 
         for i, v in pairs(Character:GetChildren()) do
 
-            if v:IsA("Model") and Images[v] and v then
+            if v:IsA("Model") and Images[v.Name] then
 
                 return v.Name
                 
