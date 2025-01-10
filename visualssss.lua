@@ -161,7 +161,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    return "Hands", Images["John Herbert"]
+    return "Hands", Images["Hands"]
 end
 
 function ESP:Get_Health(Player)
