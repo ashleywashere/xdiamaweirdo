@@ -84,7 +84,7 @@ local ESP; ESP = {
         Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
         Box_Outline = {Enabled = false, Color = Color3.new(0, 0, 0), Transparency = 0, Outline_Size = 1},
-        Healthbar = {Enabled = false, Position = "Left", ColorHigh = Color3.new(0, 1, 0), ColorLow = Color3.fromRGB(255, 0, 0)},
+        Healthbar = {Enabled = false, Position = "Left", ColorHigh = Color3.new(0, 1, 0), ColorLow = Color3.new(1, 0, 0)},
         Name = {Enabled = false, Position = "Top", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Distance = {Enabled = false, Position = "Bottom", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Tool = {Enabled = false, Position = "Right", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
@@ -401,7 +401,7 @@ do -- Player Metatable
                     local Healthbar_Settings = ESP.Settings.Healthbar
                     local Healthbar_Enabled = Healthbar_Settings.Enabled
                     local Healthbar_Position = Healthbar_Settings.Position
-                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (self.Components.DisplayedHealth / Health_Maximum), self.Components.DisplayedHealth / Health_Maximum, 0),0.1)
+                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (Current_Health / Health_Maximum), Current_Health / Health_Maximum, 0),0.1)
                     if Healthbar_Enabled then
                         if Healthbar_Position == "Left" then
                             Healthbar.Size = Health_Left_Size_Fill;
