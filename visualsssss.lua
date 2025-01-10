@@ -79,7 +79,7 @@ local Images = {
     ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
     ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
     ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
-    ["Hands"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/invalid.png")
+    ["Hands"] = ""
 }
 
 local ESP; ESP = {
