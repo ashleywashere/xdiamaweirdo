@@ -11,6 +11,14 @@ local function Lerp(a, b, t)
     return a + (b - a) * t
 end
 
+local function LerpColor(color1, color2, t)
+    return Color3.new(
+        Lerp(color1.R, color2.R, t),
+        Lerp(color1.G, color2.G, t),
+        Lerp(color1.B, color2.B, t)
+    )
+end
+
 -- VisualKit
 local VisualKit = {}; VisualKit.__index = VisualKit; do
     function VisualKit:Round_V2(V2)
@@ -53,34 +61,7 @@ local VisualKit = {}; VisualKit.__index = VisualKit; do
     end
 end
 
--- Main
-if not isfolder("ESP") then makefolder("ESP") end
-if not isfolder("ESP/assets") then makefolder("ESP/assets") end
-if not isfile("ESP/assets/taxi.oh") then
-    writefile("ESP/assets/taxi.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/taxi.png"))
-end
-if not isfile("ESP/assets/gorilla.oh") then
-    writefile("ESP/assets/gorilla.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/gorilla.png"))
-end
-if not isfile("ESP/assets/saul_goodman.oh") then
-    writefile("ESP/assets/saul_goodman.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/saul_goodman.png"))
-end
-if not isfile("ESP/assets/peter_griffin.oh") then
-    writefile("ESP/assets/peter_griffin.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/peter_griffin.png"))
-end
-if not isfile("ESP/assets/john_herbert.oh") then
-    writefile("ESP/assets/john_herbert.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/john_herbert.png"))
-end
-if not isfile("ESP/assets/fortnite.oh") then
-    writefile("ESP/assets/fortnite.oh", game:HttpGet("https://raw.githubusercontent.com/tatar0071/IonHub/main/Assets/fortnite.png"))
-end
 local Images = {
-    Taxi = readfile("ESP/assets/taxi.oh"),
-    Gorilla = readfile("ESP/assets/gorilla.oh"),
-    ["Saul Goodman"] = readfile("ESP/assets/saul_goodman.oh"),
-    ["Peter Griffin"] = readfile("ESP/assets/peter_griffin.oh"),
-    ["John Herbert"] = readfile("ESP/assets/john_herbert.oh"),
-    ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
     ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
     ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
     ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
@@ -103,12 +84,12 @@ local ESP; ESP = {
         Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
         Box_Outline = {Enabled = false, Color = Color3.new(0, 0, 0), Transparency = 0, Outline_Size = 1},
-        Healthbar = {Enabled = false, Position = "Left", Color = Color3.new(1, 1, 1), Color_Lerp = Color3.fromRGB(40, 252, 3)},
+        Healthbar = {Enabled = false, Position = "Left", ColorHigh = Color3.new(0, 1, 0), ColorLow = Color3.fromRGB(255, 0, 0)},
         Name = {Enabled = false, Position = "Top", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Distance = {Enabled = false, Position = "Bottom", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Tool = {Enabled = false, Position = "Right", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Health = {Enabled = false, Position = "Right", Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
-        Image = {Enabled = false, Image = "Taxi", Raw = Images.Taxi},
+        Image = {Enabled = false, Image = "Taxi"},
         China_Hat = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0.5, Height = 0.5, Radius = 1, Offset = 1}
     },
     Objects = {},
@@ -420,7 +401,7 @@ do -- Player Metatable
                     local Healthbar_Settings = ESP.Settings.Healthbar
                     local Healthbar_Enabled = Healthbar_Settings.Enabled
                     local Healthbar_Position = Healthbar_Settings.Position
-                    local Health_Lerp_Color = Healthbar_Settings.Color:Lerp(Healthbar_Settings.Color_Lerp, Current_Health / Health_Maximum)
+                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (Health / MaxHealth), Health / MaxHealth, 0),0.1)
                     if Healthbar_Enabled then
                         if Healthbar_Position == "Left" then
                             Healthbar.Size = Health_Left_Size_Fill;
