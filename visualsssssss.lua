@@ -163,22 +163,20 @@ function ESP:Get_Tool(Player)
     return "Hands"
 end
 
-function ESP:Get_Tool_Icon(Player)
+function ESP:Get_Tool_Icon(Player, Item)
   
     local Character = self:Get_Character(Player)
     
     if Character then
 
-        for i, v in pairs(Character:GetChildren()) do
-
-            if v:IsA("Model") and Images[v.Name] then
-
-                return Images[v.Name]
+        If Item and Images[Item] then
+            
+            return Images[Item]
                 
-            end
         end
         
     end
+        
     return Images["Hands"]
 end
 
@@ -571,8 +569,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                   
-                    --WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player)
+                    WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player,Tool.Text)
                    
                     -- 
                     
