@@ -553,11 +553,13 @@ do -- Player Metatable
                         WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 24
                     end
-                    --WeaponIcon.Image = 
+                    --WeaponIcon.Image =
+                    oldtool_icon = tool_icon
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
+                    if Images[tool_name] and Images[tool_name] ~= oldtool_icon then
                     WeaponIcon.Data = tool_icon
-                    print(WeaponIcon.Data)
+                    end
                     -- 
                     
                 else
