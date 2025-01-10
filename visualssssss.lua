@@ -96,6 +96,7 @@ local ESP; ESP = {
         Object_Maximal_Distance = 1000,
         Highlight = {Enabled = false, Color = Color3.new(1, 0, 0), Target = ""},
         WeaponIcon = {Enabled = false, Position = "Bottom"},
+        Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
         Box_Outline = {Enabled = false, Color = Color3.new(0, 0, 0), Transparency = 0, Outline_Size = 1},
         Healthbar = {Enabled = false, Position = "Left", Color = Color3.new(1, 1, 1), Color_Lerp = Color3.fromRGB(40, 252, 3)},
@@ -109,7 +110,18 @@ local ESP; ESP = {
     },
     Objects = {},
     Overrides = {},
-    China_Hat = {}
+    China_Hat = {},
+    SkelParts = {
+    "HeadTorso",
+    "TorsoToRightLeg",
+    "TorsoToLeftLeg",
+    "LeftLegToFoot",
+    "RightLegToFoot",
+    "TorsoToRightArm",
+    "RightArmToHand",
+    "TorsoToLeftArm",
+    "LeftArmToHand"
+    }
 }
 ESP.__index = ESP
 
@@ -258,6 +270,15 @@ do -- Player Metatable
         local Health, HealthBold = self.Components.Health, self.Components.HealthBold
         local Chams = _G.chamsEnabled == true and self.Components.Chams or true
         local Image = self.Components.Image
+        
+        for _, partName in ipairs(ESP.SkelParts) do
+        
+        if Components[partName .. "Outline"] == nil then self:Destroy() end
+
+        if Components[partName] == nil then self:Destroy() end
+
+        end
+        
         if Box == nil or WeaponIcon == nil or Box_Outline == nil or Healthbar == nil or Healthbar_Outline == nil or Name == nil or NameBold == nil or Distance == nil or DistanceBold == nil or Tool == nil or ToolBold == nil or Health == nil or HealthBold == nil or Chams == nil then
             self:Destroy()
         end
@@ -712,6 +733,15 @@ do -- ESP Functions
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
         Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
+
+        for _, partName in ipairs(ESP.SkelParts) do
+        
+        Components[partName .. "Outline"] = Framework:Draw("Line", {Visible = false,Thickness = 3,Transparency = 1,Color = Color3.new(0, 0, 0)})
+
+        Components[partName] = Framework:Draw("Line", {Visible = false,Thickness = 2,Transparency = 1,Color = Color3.new(1, 1, 1)})
+
+        end
+        
         self.Objects[Instance] = Object
         return Object
     end
