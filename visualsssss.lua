@@ -552,7 +552,10 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    if WeaponIcon.Data ~= ESP:Get_Tool(self.Player) then
+
+                    local placeholder_string;
+                    
+                    if Images[placeholder_string] and WeaponIcon.Data ~= Images[placeholder_string] then
                     placeholder_string, WeaponIcon.Data = ESP:Get_Tool(self.Player)
                     end
                     -- 
