@@ -154,30 +154,13 @@ function ESP:Get_Tool(Player)
 
             if v:IsA("Model") and Images[v.Name] then
 
-                return v.Name
+                return v.Name, Images[v.Name]
                 
             end
         end
         
     end
-    return "Hands"
-end
-
-function ESP:Get_Tool_Icon(Player, Item)
-  
-    local Character = self:Get_Character(Player)
-    
-    if Character then
-
-        If Item and Images[Item] then
-            
-            return Images[Item]
-                
-        end
-        
-    end
-        
-    return Images["Hands"]
+    return "Hands", Images["Hands"]
 end
 
 function ESP:Get_Health(Player)
@@ -507,12 +490,12 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    Tool.Text = ESP:Get_Tool(self.Player)
+                    Tool.Text = ESP:Get_Tool(self.Player)[1]
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-                    ToolBold.Text = ESP:Get_Tool(self.Player)
+                    ToolBold.Text = ESP:Get_Tool(self.Player)[1]
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
@@ -569,7 +552,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player,ESP:Get_Tool(self.Player))
+                    WeaponIcon.Data = ESP:Get_Tool(self.Player)[2]
                    
                     -- 
                     
