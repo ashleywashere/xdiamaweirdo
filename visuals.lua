@@ -79,6 +79,9 @@ local Images = {
     ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
     ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
     ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
+    ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
+    ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
+    ["Blueprint"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png"),
     ["Hands"] = ""
 }
 
