@@ -571,7 +571,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    if WeaponIcon.Data ~= ESP:Get_Tool_Icon(self.Player) then
+                    if Tool.Text ~= "Hands" then
                     WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player)
                     end
                     -- 
@@ -733,7 +733,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Salvaged AK"]})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
         self.Objects[Instance] = Object
         return Object
     end
