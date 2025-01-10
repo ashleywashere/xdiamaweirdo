@@ -149,10 +149,16 @@ function ESP:Get_Tool(Player)
     end
     local Character = self:Get_Character(Player)
     if Character then
-        local Tool = Character:FindFirstChildOfClass("Tool")
-        if Tool then
-            return Tool.Name
+
+        for i, v in pairs(Character:GetChildren()) do
+
+            if v:IsA("Model") and Images[v] and v then
+
+                return v.Name
+                
+            end
         end
+        
     end
     return "Hands"
 end
