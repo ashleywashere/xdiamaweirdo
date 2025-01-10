@@ -704,7 +704,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Salvaged AK"]})
         self.Objects[Instance] = Object
         return Object
     end
