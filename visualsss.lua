@@ -495,21 +495,6 @@ do -- Player Metatable
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     ToolBold.Position = Tool.Position + Vector2.new(1, 0)
                     ToolBold.Visible = Tool.Visible and ESP.Settings.Bold_Text
-
-                    -- WeaponIcon
-                    local WeaponIcon_Settings = ESP.Settings.WeaponIcon
-                    local WeaponIcon_Position = WeaponIcon_Settings.Position
-                    if WeaponIcon_Position == "Top" and WeaponIcon_Settings.Enabled then 
-                        WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Top_Offset) 
-                        Top_Offset = Top_Offset + 10
-                    elseif WeaponIcon_Position == "Bottom" and WeaponIcon_Settings.Enabled then
-                        WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 12
-                    end
-                    --WeaponIcon.Image = 
-                    WeaponIcon.Visible = WeaponIcon_Settings.Enabled
-                    WeaponIcon.Size = Vector2.new(35,35)
-                    -- 
           
                     -- Health
                     local Health_Settings = ESP.Settings.Health
@@ -535,6 +520,7 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
+                    
                     Health.Text = tostring(math.floor(Current_Health + 0.5))
                     Health.Color = Health_Lerp_Color
                     Health.OutlineColor = Health_Settings.OutlineColor
@@ -547,6 +533,21 @@ do -- Player Metatable
                     HealthBold.Position = Health.Position + Vector2.new(1, 0)
                     HealthBold.Visible = Health.Visible and ESP.Settings.Bold_Text
 
+                    -- WeaponIcon
+                    local WeaponIcon_Settings = ESP.Settings.WeaponIcon
+                    local WeaponIcon_Position = WeaponIcon_Settings.Position
+                    if WeaponIcon_Position == "Top" and WeaponIcon_Settings.Enabled then 
+                        WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Top_Offset) 
+                        Top_Offset = Top_Offset + 10
+                    elseif WeaponIcon_Position == "Bottom" and WeaponIcon_Settings.Enabled then
+                        WeaponIcon.Position = Vector2.new((Box_Size.X-40)/2 + Box_Position.X, Bottom_Offset) 
+                        Bottom_Offset = Bottom_Offset + 24
+                    end
+                    --WeaponIcon.Image = 
+                    WeaponIcon.Visible = WeaponIcon_Settings.Enabled
+                    WeaponIcon.Size = Vector2.new(35,35)
+                    -- 
+                    
                     -- Chams
                     if _G.chamsEnabled == true then
                         local Chams_Settings = ESP.Settings.Chams
