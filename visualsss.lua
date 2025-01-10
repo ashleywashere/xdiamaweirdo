@@ -78,6 +78,7 @@ local Images = {
     ["John Herbert"] = readfile("ESP/assets/john_herbert.oh"),
     ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
     ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png")
+    ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png")
 }
 
 local ESP; ESP = {
@@ -152,7 +153,7 @@ function ESP:Get_Tool(Player)
             return Tool.Name
         end
     end
-    return "Bow"
+    return "Salvaged AK"
 end
 
 function ESP:Get_Health(Player)
@@ -702,7 +703,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = Images.Bow})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Salvaged AK"]})
         self.Objects[Instance] = Object
         return Object
     end
