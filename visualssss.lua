@@ -276,7 +276,7 @@ do -- Player Metatable
         local Tool, ToolBold = self.Components.Tool, self.Components.ToolBold
         local Health, HealthBold = self.Components.Health, self.Components.HealthBold
         local Image = self.Components.Image
-        local DisplayedHealth = Components.DisplayedHealth
+        local DisplayedHealth = self.Components.DisplayedHealth
         
         for _, partName in ipairs(ESP.SkelParts) do
         
