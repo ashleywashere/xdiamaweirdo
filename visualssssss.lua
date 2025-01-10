@@ -1,4 +1,4 @@
-
+    
 -- Services
 local Workspace = cloneref(game:GetService("Workspace"))
 local Camera = cloneref(Workspace.CurrentCamera)
@@ -557,7 +557,7 @@ do -- Player Metatable
                         Bottom_Offset = Bottom_Offset + 12
                     elseif Health_Position == "Left" then
                         if Healthbar_Position == "Left" then
-                            Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2 + 4, Healthbar.Size.Y - Health.TextBounds.Y + 3 - Left_Offset)
+                            Health.Position = Healthbar.Position + Vector2.new(-Health.TextBounds.X - 5, Healthbar.Size.Y / 2 - Health.TextBounds.Y / 2 - Left_Offset)
                         else
                             Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         end
