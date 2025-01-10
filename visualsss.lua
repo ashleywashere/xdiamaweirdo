@@ -557,7 +557,7 @@ do -- Player Metatable
                         Bottom_Offset = Bottom_Offset + 12
                     elseif Health_Position == "Left" then
                         if Healthbar_Position == "Left" then
-                            Health.Position = Healthbar.Position + Vector2.new(-Health.TextBounds.X+4, Healthbar.Size.Y - Health.TextBounds.Y / 2 + 3)
+                            Health.Position = Healthbar.Position + Vector2.new(-Health.TextBounds.X+2, Healthbar.Size.Y - Health.TextBounds.Y / 2 + 3)
                            -- Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2 + 4, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
                         else
                             Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
