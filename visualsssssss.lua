@@ -273,9 +273,9 @@ do -- Player Metatable
         
         for _, partName in ipairs(ESP.SkelParts) do
         
-        if Components[partName .. "Outline"] == nil then self:Destroy() end
+        if self.Components[partName .. "Outline"] == nil then self:Destroy() end
 
-        if Components[partName] == nil then self:Destroy() end
+        if self.Components[partName] == nil then self:Destroy() end
 
         end
         
