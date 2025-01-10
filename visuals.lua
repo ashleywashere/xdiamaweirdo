@@ -154,8 +154,6 @@ function ESP:Get_Tool(Player, WeaponIcon)
 
             if v:IsA("Model") and Images[v.Name] then
 
-                if WeaponIcon and WeaponIcon.Data ~= Images[v.Name] then WeaponIcon.Data = Images[v.Name] end
-                
                 return v.Name, Images[v.Name]
                 
             end
@@ -163,8 +161,6 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    WeaponIcon.Data = Images["Hands"]
-    
     return "Hands", Images["Hands"]
 end
 
@@ -323,6 +319,8 @@ do -- Player Metatable
                 end
 
                 if ESP.Settings.Enabled and On_Screen and Meter_Distance < ESP.Settings.Maximal_Distance and Good then
+
+                    local tool_name, tool_icon = ESP:Get_Tool(self.Player,WeaponIcon)
                     local Highlight_Settings = ESP.Settings.Highlight
                     local Is_Highlighted = Highlight_Settings.Enabled and Highlight_Settings.Target == Character or false
                     local Highlight_Color = Highlight_Settings.Color
@@ -495,12 +493,12 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    Tool.Text = ESP:Get_Tool(self.Player,WeaponIcon)
+                    Tool.Text = tool_name
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-                    ToolBold.Text = ESP:Get_Tool(self.Player)
+                    ToolBold.Text = tool_name
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
@@ -557,6 +555,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
+                    WeaponIcon.Data = tool_icon
                     -- 
                     
                 else
