@@ -163,6 +163,25 @@ function ESP:Get_Tool(Player)
     return "Hands"
 end
 
+function ESP:Get_Tool_Icon(Player)
+  
+    local Character = self:Get_Character(Player)
+    
+    if Character then
+
+        for i, v in pairs(Character:GetChildren()) do
+
+            if v:IsA("Model") and Images[v.Name] then
+
+                return Images[v.Name]
+                
+            end
+        end
+        
+    end
+    return Images["Hands"]
+end
+
 function ESP:Get_Health(Player)
     if self.Overrides.Get_Character ~= nil then
         return self.Overrides.Get_Health(Player)
@@ -552,6 +571,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
+                    WeaponIcon.Image = ESP:Get_Tool_Icon(self.Player)
                     -- 
                     
                     -- Chams
