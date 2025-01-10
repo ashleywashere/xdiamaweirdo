@@ -403,6 +403,7 @@ do -- Player Metatable
                     local Healthbar_Position = Healthbar_Settings.Position
 
                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh, Color3.new(1 - Health_Percent, Health_Percent, 0), 0.1)
+                    print(Health_Lerp_Color)
                     
                     if Healthbar_Enabled then
                         if Healthbar_Position == "Left" then
