@@ -490,12 +490,12 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    Tool.Text = ESP:Get_Tool(self.Player)[1]
+                    Tool.Text = ESP:Get_Tool(self.Player)
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-                    ToolBold.Text = ESP:Get_Tool(self.Player)[1]
+                    ToolBold.Text = ESP:Get_Tool(self.Player)
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
@@ -552,27 +552,10 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    WeaponIcon.Data = ESP:Get_Tool(self.Player)[2]
+                    placeholder_string, WeaponIcon.Data = ESP:Get_Tool(self.Player)
                    
                     -- 
                     
-                    -- Chams
-                    if _G.chamsEnabled == true then
-                        local Chams_Settings = ESP.Settings.Chams
-                        local Is_Visible = false
-                        if ESP:Check_Visible(Head) or ESP:Check_Visible(HumanoidRootPart) then
-                            Is_Visible = true
-                        end
-                        local Chams_Enabled = Chams_Settings.Enabled
-                        Chams.Enabled = Chams_Enabled
-                        Chams.Adornee = Chams_Enabled and Character or nil
-                        if Chams_Enabled then
-                            Chams.FillColor = Chams_Settings.Mode == "Visible" and Is_Visible and Color3.new(0, 1, 0) or Chams_Settings.Color
-                            Chams.OutlineColor = Chams_Settings.OutlineColor
-                            Chams.FillTransparency = Chams_Settings.Transparency
-                            Chams.OutlineTransparency = Chams_Settings.OutlineTransparency
-                        end
-                    end
                 else
                     Box.Visible = false
                     Box_Outline.Visible = false
