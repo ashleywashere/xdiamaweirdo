@@ -560,7 +560,8 @@ do -- Player Metatable
                     oldtool_icon = tool_icon
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    if Images[tool_name] ~= tool_icon then
+
+                    if WeaponIcon.Data ~= tool_icon then
                     WeaponIcon.Data = tool_icon
                     end
                     -- 
