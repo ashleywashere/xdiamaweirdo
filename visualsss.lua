@@ -7,6 +7,10 @@ local LocalPlayer = cloneref(Players.LocalPlayer)
 local RunService = cloneref(game:GetService("RunService"))
 local CoreGui = cloneref(game:GetService("CoreGui"))
 
+local function Lerp(a, b, t)
+    return a + (b - a) * t
+end
+
 -- VisualKit
 local VisualKit = {}; VisualKit.__index = VisualKit; do
     function VisualKit:Round_V2(V2)
@@ -272,6 +276,7 @@ do -- Player Metatable
         local Tool, ToolBold = self.Components.Tool, self.Components.ToolBold
         local Health, HealthBold = self.Components.Health, self.Components.HealthBold
         local Image = self.Components.Image
+        local DisplayedHealth = Components.DisplayedHealth
         
         for _, partName in ipairs(ESP.SkelParts) do
         
@@ -316,6 +321,8 @@ do -- Player Metatable
                 local Dimensions = VisualKit:Get_Bounding_Vectors(HumanoidRootPart)
                 local HRP_Position, On_Screen = Camera:WorldToViewportPoint(HumanoidRootPart.Position)
                 local Stud_Distance, Meter_Distance = math.floor(HRP_Position.Z + 0.5), math.floor(HRP_Position.Z / 3.5714285714 + 0.5)
+
+                self.Components.DisplayedHealth = Lerp(self.Components.DisplayedHealth, Current_Health, 0.1)
 
                 local Y_Minimal, Y_Maximal = Camera.ViewportSize.X, 0
                 local X_Minimal, X_Maximal = Camera.ViewportSize.X, 0
@@ -397,14 +404,17 @@ do -- Player Metatable
                     Image.Visible = Image_Enabled
 
                     -- Healthbar
+
+                    local Health_Percent = self.Components.DisplayedHealth / Health_Maximum
+                    
                     local Health_Top_Size_Outline = Vector2.new(Box_Size.X - 4, 3)
                     local Health_Top_Pos_Outline = Box_Position + Vector2.new(2, Box_Size.Y - 6)
-                    local Health_Top_Size_Fill = Vector2.new((Current_Health * Health_Top_Size_Outline.X / Health_Maximum) + 2, 1)
+                    local Health_Top_Size_Fill = Vector2.new((Health_Percent * Health_Top_Size_Outline.X) + 2, 1)
                     local Health_Top_Pos_Fill = Health_Top_Pos_Outline + Vector2.new(1 + -(Health_Top_Size_Fill.X - Health_Top_Size_Outline.X),1);
 
                     local Health_Left_Size_Outline = Vector2.new(3, Box_Size.Y - 4)
                     local Health_Left_Pos_Outline = Vector2.new(X_Maximal + Box_Size.X - 6, Box_Position.Y + 2)
-                    local Health_Left_Size_Fill = Vector2.new(1, (Current_Health * Health_Left_Size_Outline.Y / Health_Maximum) + 2)
+                    local Health_Left_Size_Fill = Vector2.new(1, (Health_Percent * Health_Left_Size_Outline.Y) + 2)
                     local Health_Left_Pos_Fill = Health_Left_Pos_Outline + Vector2.new(1,-1 + -(Health_Left_Size_Fill.Y - Health_Left_Size_Fill.Y));
 
                     local Healthbar_Settings = ESP.Settings.Healthbar
@@ -416,7 +426,8 @@ do -- Player Metatable
                             Healthbar.Size = Health_Left_Size_Fill;
                             Healthbar.Position = Health_Left_Pos_Fill;
                             Healthbar_Outline.Size = Health_Left_Size_Outline;
-                            Healthbar_Outline.Position = Health_Left_Pos_Outline;
+                            Healthbar_Outline.Position = Health_Left_Pos_Outline;  
+       
                         elseif Healthbar_Position == "Right" then
                             Healthbar.Size = Health_Left_Size_Fill;
                             Healthbar.Position = Vector2.new(X_Maximal + Box_Size.X + 4, Box_Position.Y + 1) - Vector2.new(Box_Size.X, 0)
@@ -551,28 +562,12 @@ do -- Player Metatable
                     local Health_Position = Health_Settings.Position
                     local Health_Enabled = Health_Settings.Enabled
                     
-                    if Health_Position == "Top" then 
-                        Health.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Health.TextBounds.Y - Box_Size.Y + Top_Offset) 
-                        Top_Offset = Top_Offset + 10
-                    elseif Health_Position == "Bottom" then
-                        Health.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
-                        Bottom_Offset = Bottom_Offset + 12
-                    elseif Health_Position == "Left" and Health_Enabled then
-                        if Healthbar_Position == "Left" and Healthbar_Enabled then
+                    if Health_Position == "Left" and Health_Enabled then
+                        if Healthbar_Position == "Left" then
                             Health.Position = Healthbar.Position + Vector2.new(-9, Healthbar.Size.Y - Health.TextBounds.Y / 2)
                             Left_Offset = Left_Offset + 15
-                        else
-                            Health.Position = Healthbar.Position + Vector2.new(-7, Healthbar.Size.Y - Health.TextBounds.Y / 2)
-                            Left_Offset = Left_Offset + 13
                         end
-                        
-                    elseif Health_Position == "Right" and Health_Enabled then
-                        if Healthbar_Position == "Right" and Healthbar_Enabled then
-                            Health.Position = Vector2.new(X_Maximal + Box_Size.X + 4 + 4 + Health.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
-                        else
-                            Health.Position = Vector2.new(X_Maximal + Box_Size.X + 3 + Health.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
-                        end
-                        Right_Offset = Right_Offset + 10
+                   
                     end
                     
                     Health.Text = tostring(math.floor(Current_Health + 0.5))
@@ -787,6 +782,8 @@ do -- ESP Functions
         Components.Image = VisualKit:Draw("Image", {Data = self.Settings.Image.Raw})
         Components.WeaponIcon = VisualKit:Draw("Image", {Data = Images["Hands"]})
 
+        Components.DisplayedHealth = 69;
+        
         for _, partName in ipairs(ESP.SkelParts) do
         
         Components[partName .. "Outline"] = VisualKit:Draw("Line", {Visible = false,Thickness = 3,Transparency = 1,Color = Color3.new(0, 0, 0)})
