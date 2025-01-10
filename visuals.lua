@@ -321,6 +321,7 @@ do -- Player Metatable
                 if ESP.Settings.Enabled and On_Screen and Meter_Distance < ESP.Settings.Maximal_Distance and Good then
 
                     local tool_name, tool_icon = ESP:Get_Tool(self.Player,WeaponIcon)
+        
                     local Highlight_Settings = ESP.Settings.Highlight
                     local Is_Highlighted = Highlight_Settings.Enabled and Highlight_Settings.Target == Character or false
                     local Highlight_Color = Highlight_Settings.Color
@@ -555,8 +556,9 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
+                    
                     print(WeaponIcon.Data)
-                    print(tool_icon)
+   
                     if WeaponIcon.Data ~= tool_icon then
                     WeaponIcon.Data = tool_icon
                     end
