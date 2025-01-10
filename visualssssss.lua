@@ -401,7 +401,7 @@ do -- Player Metatable
                     local Healthbar_Settings = ESP.Settings.Healthbar
                     local Healthbar_Enabled = Healthbar_Settings.Enabled
                     local Healthbar_Position = Healthbar_Settings.Position
-                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (Health / MaxHealth), Health / MaxHealth, 0),0.1)
+                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (self.Components.DisplayedHealth / Health_Maximum), self.Components.DisplayedHealth / Health_Maximum, 0),0.1)
                     if Healthbar_Enabled then
                         if Healthbar_Position == "Left" then
                             Healthbar.Size = Health_Left_Size_Fill;
