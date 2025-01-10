@@ -161,7 +161,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    return "Hands", Images["Hands"]
+    return "Hands", Images["Salvaged AK"]
 end
 
 function ESP:Get_Health(Player)
