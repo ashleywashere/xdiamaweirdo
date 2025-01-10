@@ -571,7 +571,7 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    WeaponIcon.Image = ESP:Get_Tool_Icon(self.Player)
+                    WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player)
                     -- 
                     
                     -- Chams
