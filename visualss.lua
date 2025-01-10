@@ -104,7 +104,6 @@ local ESP; ESP = {
         Distance = {Enabled = false, Position = "Bottom", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Tool = {Enabled = false, Position = "Right", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Health = {Enabled = false, Position = "Right", Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
-        Chams = {Enabled = false, Color = Color3.new(1, 1, 1), Mode = "Visible", OutlineColor = Color3.new(0, 0, 0), Transparency = 0.5, OutlineTransparency = 0},
         Image = {Enabled = false, Image = "Taxi", Raw = Images.Taxi},
         China_Hat = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0.5, Height = 0.5, Radius = 1, Offset = 1}
     },
@@ -258,13 +257,6 @@ do -- Player Metatable
     Player_Metatable.__index = Player_Metatable
     function Player_Metatable:Destroy()
         for Index, Component in pairs(self.Components) do
-            if tostring(Index) == "Chams" then
-                if _G.chamsEnabled == true then
-                    Component:Destroy()
-                end
-                self.Components[Index] = nil
-                continue
-            end
             Component.Visible = false
             Component:Remove()
             self.Components[Index] = nil
@@ -279,7 +271,6 @@ do -- Player Metatable
         local Distance, DistanceBold = self.Components.Distance, self.Components.DistanceBold
         local Tool, ToolBold = self.Components.Tool, self.Components.ToolBold
         local Health, HealthBold = self.Components.Health, self.Components.HealthBold
-        local Chams = _G.chamsEnabled == true and self.Components.Chams or true
         local Image = self.Components.Image
         
         for _, partName in ipairs(ESP.SkelParts) do
@@ -290,7 +281,7 @@ do -- Player Metatable
 
         end
         
-        if Box == nil or WeaponIcon == nil or Box_Outline == nil or Healthbar == nil or Healthbar_Outline == nil or Name == nil or NameBold == nil or Distance == nil or DistanceBold == nil or Tool == nil or ToolBold == nil or Health == nil or HealthBold == nil or Chams == nil then
+        if Box == nil or WeaponIcon == nil or Box_Outline == nil or Healthbar == nil or Healthbar_Outline == nil or Name == nil or NameBold == nil or Distance == nil or DistanceBold == nil or Tool == nil or ToolBold == nil or Health == nil or HealthBold == nil then
             self:Destroy()
         end
         local Character = ESP:Get_Character(self.Player)
@@ -789,7 +780,6 @@ do -- ESP Functions
         Components.ToolBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
         Components.Health = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
         Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
-        Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
         Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
 
