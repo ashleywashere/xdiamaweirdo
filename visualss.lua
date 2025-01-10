@@ -549,21 +549,25 @@ do -- Player Metatable
                     -- Health
                     local Health_Settings = ESP.Settings.Health
                     local Health_Position = Health_Settings.Position
+                    local Health_Enabled = Health_Settings.Enabled
+                    
                     if Health_Position == "Top" then 
                         Health.Position = Vector2.new(X_Maximal + Box_Size.X / 2, Box_Position.Y) - Vector2.new(0, Health.TextBounds.Y - Box_Size.Y + Top_Offset) 
                         Top_Offset = Top_Offset + 10
                     elseif Health_Position == "Bottom" then
                         Health.Position = Vector2.new(Box_Size.X / 2 + Box_Position.X, Bottom_Offset) 
                         Bottom_Offset = Bottom_Offset + 12
-                    elseif Health_Position == "Left" then
-                        if Healthbar_Position == "Left" then
+                    elseif Health_Position == "Left" and Health_Enabled then
+                        if Healthbar_Position == "Left" and Healthbar_Enabled then
                             Health.Position = Healthbar.Position + Vector2.new(-9, Healthbar.Size.Y - Health.TextBounds.Y / 2)
+                            Left_Offset = Left_Offset + 15
                         else
-                            Health.Position = Health_Left_Pos_Outline - Vector2.new(Health.TextBounds.X/2 - 2, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Left_Offset)
+                            Health.Position = Healthbar.Position + Vector2.new(-7, Healthbar.Size.Y - Health.TextBounds.Y / 2)
+                            Left_Offset = Left_Offset + 13
                         end
-                        Left_Offset = Left_Offset + 10
-                    elseif Health_Position == "Right" then
-                        if Healthbar_Position == "Right" then
+                        
+                    elseif Health_Position == "Right" and Health_Enabled then
+                        if Healthbar_Position == "Right" and Healthbar_Enabled then
                             Health.Position = Vector2.new(X_Maximal + Box_Size.X + 4 + 4 + Health.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
                         else
                             Health.Position = Vector2.new(X_Maximal + Box_Size.X + 3 + Health.TextBounds.X / 2, Box_Position.Y + 2) - Vector2.new(Box_Size.X, -(100 * Health_Left_Size_Outline.Y / 100) + 2 - Right_Offset)
