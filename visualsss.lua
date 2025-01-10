@@ -77,7 +77,7 @@ local Images = {
     ["Peter Griffin"] = readfile("ESP/assets/peter_griffin.oh"),
     ["John Herbert"] = readfile("ESP/assets/john_herbert.oh"),
     ["Fortnite"] = readfile("ESP/assets/fortnite.oh"),
-    ["Bow"] = readfile("ESP/assets/gorilla.oh"), --game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
+    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
     ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
     ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
     ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
@@ -560,7 +560,9 @@ do -- Player Metatable
                     oldtool_icon = tool_icon
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
+                    if Images[tool_name] ~= tool_icon then
                     WeaponIcon.Data = tool_icon
+                    end
                     -- 
                     
                 else
