@@ -161,7 +161,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    return "Hands", Images["Hands"]
+    return "Hands", Images["John Herbert"]
 end
 
 function ESP:Get_Health(Player)
@@ -557,12 +557,7 @@ do -- Player Metatable
                     oldtool_icon = tool_icon
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-
-                    print(tool_name)
-                    
-                    if Images[tool_name] and Images[tool_name] ~= oldtool_icon then
                     WeaponIcon.Data = tool_icon
-                    end
                     -- 
                     
                 else
