@@ -161,7 +161,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    return "Hands", Images["Salvaged AK"]
+    return "Hands", Images["Hands"]
 end
 
 function ESP:Get_Health(Player)
@@ -559,7 +559,7 @@ do -- Player Metatable
                     
                     print(WeaponIcon.Data)
    
-                    if WeaponIcon.Data ~= tool_icon then
+                    if Images[tool_name] and Images[tool_name] ~= tool_icon then
                     WeaponIcon.Data = tool_icon
                     end
                     -- 
@@ -704,7 +704,7 @@ do -- ESP Functions
         Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
         Components.Chams = _G.chamsEnabled == true and Framework:Instance("Highlight", {Parent = CoreGui, DepthMode = Enum.HighlightDepthMode.AlwaysOnTop}) or true
         Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Salvaged AK"]})
+        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
         self.Objects[Instance] = Object
         return Object
     end
