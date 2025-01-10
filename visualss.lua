@@ -556,7 +556,10 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                 
+
+                    print(tool_name)
+                    warn(tool_icon)
+                    
                     if Images[tool_name] and Images[tool_name] ~= tool_icon then
                     WeaponIcon.Data = tool_icon
                     end
