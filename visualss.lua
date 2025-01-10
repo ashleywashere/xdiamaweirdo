@@ -154,7 +154,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
 
             if v:IsA("Model") and Images[v.Name] then
 
-                if WeaponIcon then WeaponIcon.Data = Images[v.Name] end
+                if WeaponIcon and WeaponIcon.Data ~= Images[v.Name] then WeaponIcon.Data = Images[v.Name] end
                 
                 return v.Name, Images[v.Name]
                 
@@ -163,7 +163,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
         
     end
 
-    if WeaponIcon then WeaponIcon.Data = Images["Hands"] end
+     if WeaponIcon and WeaponIcon.Data ~= Images[v.Name] then WeaponIcon.Data = Images["Hands"] end
     
     return "Hands", Images["Hands"]
 end
