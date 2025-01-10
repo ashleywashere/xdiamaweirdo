@@ -121,6 +121,17 @@ local ESP; ESP = {
     "RightArmToHand",
     "TorsoToLeftArm",
     "LeftArmToHand"
+    },
+    joints = {
+        HeadTorso = {"Head", "LowerTorso"},
+        TorsoToRightLeg = {"LowerTorso", "RightUpperLeg"},
+        TorsoToLeftLeg = {"LowerTorso", "LeftUpperLeg"},
+        LeftLegToFoot = {"LeftUpperLeg", "LeftFoot"},
+        RightLegToFoot = {"RightUpperLeg", "RightFoot"},
+        TorsoToRightArm = {"UpperTorso", "RightUpperArm"},
+        RightArmToHand = {"RightUpperArm", "RightHand"},
+        TorsoToLeftArm = {"UpperTorso", "LeftUpperArm"},
+        LeftArmToHand = {"LeftUpperArm", "LeftHand"}
     }
 }
 ESP.__index = ESP
@@ -299,10 +310,14 @@ do -- Player Metatable
                 ToolBold.Visible = false
                 Health.Visible = false
                 HealthBold.Visible = false
-                if _G.chamsEnabled == true then
-                    Chams.Enabled = false
-                end
                 Image.Visible = false
+                for _, partName in ipairs(ESP.SkelParts) do
+        
+                    self.Components[partName .. "Outline"].Visible = false
+                
+                    self.Components[partName].Visible = false
+                
+                end
                 return
             end
             local Current_Health, Health_Maximum = ESP:Get_Health(self.Player), Humanoid.MaxHealth
@@ -590,7 +605,39 @@ do -- Player Metatable
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
                 
-                    -- 
+                    -- Skeleton
+
+                    for partName, parts in pairs(ESP.joints) do
+                        local part1, part2 = Character:FindFirstChild(parts[1]), Character:FindFirstChild(parts[2])
+                        if part1 and part2 then
+                            local pos1, vis1 = Camera:WorldToViewportPoint(part1.Position)
+                            local pos2, vis2 = Camera:WorldToViewportPoint(part2.Position)
+                
+                            if vis1 and vis2 then
+                                if ESP.Settings.Skeleton.Outline then
+                                self.Components[partName .. "Outline"].Visible = true
+                                self.Components[partName .. "Outline"].From = Vector2.new(pos1.X, pos1.Y)
+                                self.Components[partName .. "Outline"].To = Vector2.new(pos2.X, pos2.Y)
+                                else
+                                self.Components[partName .. "Outline"].Visible = false
+                                 end
+
+                                if ESP.Settings.Skeleton.Enabled then
+                                self.Components[partName].Visible = true
+                                self.Components[partName].From = Vector2.new(pos1.X, pos1.Y)
+                                self.Components[partName].To = Vector2.new(pos2.X, pos2.Y)
+                                else
+                                self.Components[partName].Visible = false
+                                end
+                            else
+                                self.Components[partName .. "Outline"].Visible = false
+                                self.Components[partName].Visible = false
+                            end
+                        else
+                            self.Components[partName .. "Outline"].Visible = false
+                            self.Components[partName].Visible = false
+                        end
+                    end
                     
                 else
                     Box.Visible = false
@@ -606,10 +653,14 @@ do -- Player Metatable
                     WeaponIcon.Visible = false
                     Health.Visible = false
                     HealthBold.Visible = false
-                    if _G.chamsEnabled == true then
-                        Chams.Enabled = false
-                    end
                     Image.Visible = false
+                    for _, partName in ipairs(ESP.SkelParts) do
+        
+                        self.Components[partName .. "Outline"].Visible = false
+                
+                        self.Components[partName].Visible = false
+                
+                    end
                     return
                 end
             else
@@ -626,10 +677,14 @@ do -- Player Metatable
                 WeaponIcon.Visible = false
                 Health.Visible = false
                 HealthBold.Visible = false
-                if _G.chamsEnabled == true then
-                    Chams.Enabled = false
-                end
                 Image.Visible = false
+                  for _, partName in ipairs(ESP.SkelParts) do
+    
+                    self.Components[partName .. "Outline"].Visible = false
+            
+                    self.Components[partName].Visible = false
+            
+                end
                 return
             end
         else
@@ -646,10 +701,14 @@ do -- Player Metatable
             WeaponIcon.Visible = false
             Health.Visible = false
             HealthBold.Visible = false
-            if _G.chamsEnabled == true then
-                Chams.Enabled = false
-            end
             Image.Visible = false
+              for _, partName in ipairs(ESP.SkelParts) do
+    
+                self.Components[partName .. "Outline"].Visible = false
+            
+                self.Components[partName].Visible = false
+            
+            end
             return
         end
     end
