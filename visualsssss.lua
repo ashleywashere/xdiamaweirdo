@@ -571,9 +571,9 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-                    if Tool.Text ~= "Hands" then
-                    WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player)
-                    end
+                   
+                    --WeaponIcon.Data = ESP:Get_Tool_Icon(self.Player)
+                   
                     -- 
                     
                     -- Chams
