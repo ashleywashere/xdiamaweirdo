@@ -143,7 +143,7 @@ function ESP:Get_Character(Player)
     return Player.Character
 end
 
-function ESP:Get_Tool(Player)
+function ESP:Get_Tool(Player, WeaponIcon)
     if self.Overrides.Get_Tool ~= nil then
         return self.Overrides.Get_Tool(Player)
     end
@@ -154,12 +154,17 @@ function ESP:Get_Tool(Player)
 
             if v:IsA("Model") and Images[v.Name] then
 
+                if WeaponIcon then WeaponIcon.Data = Images[v.Name] end
+                
                 return v.Name, Images[v.Name]
                 
             end
         end
         
     end
+
+    if WeaponIcon then WeaponIcon.Data = Images["Hands"] end
+    
     return "Hands", Images["Hands"]
 end
 
@@ -490,7 +495,7 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    Tool.Text = ESP:Get_Tool(self.Player)
+                    Tool.Text = ESP:Get_Tool(self.Player,WeaponIcon)
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
@@ -552,12 +557,6 @@ do -- Player Metatable
                     --WeaponIcon.Image = 
                     WeaponIcon.Visible = WeaponIcon_Settings.Enabled
                     WeaponIcon.Size = Vector2.new(35,35)
-
-                    local placeholder_string;
-                    
-                    if Images[placeholder_string] and WeaponIcon.Data ~= Images[placeholder_string] then
-                    placeholder_string, WeaponIcon.Data = ESP:Get_Tool(self.Player)
-                    end
                     -- 
                     
                 else
