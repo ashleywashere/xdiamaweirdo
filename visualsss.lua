@@ -1,21 +1,21 @@
 
 -- Services
-local Workspace = game:GetService("Workspace")
-local Camera = Workspace.CurrentCamera
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local RunService = game:GetService("RunService")
-local CoreGui = game:GetService("CoreGui")
+local Workspace = cloneref(game:GetService("Workspace"))
+local Camera = cloneref(Workspace.CurrentCamera)
+local Players = cloneref(game:GetService("Players"))
+local LocalPlayer = cloneref(Players.LocalPlayer)
+local RunService = cloneref(game:GetService("RunService"))
+local CoreGui = cloneref(game:GetService("CoreGui"))
 
--- Framework
-local Framework = {}; Framework.__index = Framework; do
-    function Framework:Round_V2(V2)
+-- VisualKit
+local VisualKit = {}; VisualKit.__index = VisualKit; do
+    function VisualKit:Round_V2(V2)
         return Vector2.new(math.floor(V2.X + 0.5), math.floor(V2.Y + 0.5))
     end
-    function Framework:V3_To_V2(V3)
+    function VisualKit:V3_To_V2(V3)
         return Vector2.new(V3.X, V3.Y)
     end
-    function Framework:Draw(Object, Properties)
+    function VisualKit:Draw(Object, Properties)
         Object = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
           
@@ -23,14 +23,14 @@ local Framework = {}; Framework.__index = Framework; do
         end
         return Object
     end
-    function Framework:Instance(Object, Properties)
+    function VisualKit:Instance(Object, Properties)
         Object = Instance.new(Object)
         for Property, Value in pairs(Properties) do
             Object[Property] = Value
         end
         return Object
     end
-    function Framework:Get_Bounding_Vectors(Part)
+    function VisualKit:Get_Bounding_Vectors(Part)
         local Part_CFrame, Part_Size = Part.CFrame, Part.Size 
         local X, Y, Z = Part_Size.X, Part_Size.Y, Part_Size.Z
         return {
@@ -44,7 +44,7 @@ local Framework = {}; Framework.__index = Framework; do
             BFLC = Part_CFrame * CFrame.new(-X, -Y * 1.6, -Z),
         };
     end
-    function Framework:Drawing_Transparency(Transparency)
+    function VisualKit:Drawing_Transparency(Transparency)
         return 1 - Transparency
     end
 end
@@ -313,7 +313,7 @@ do -- Player Metatable
             end
             local Current_Health, Health_Maximum = ESP:Get_Health(self.Player), Humanoid.MaxHealth
             if Head and HumanoidRootPart and Current_Health > 0 then
-                local Dimensions = Framework:Get_Bounding_Vectors(HumanoidRootPart)
+                local Dimensions = VisualKit:Get_Bounding_Vectors(HumanoidRootPart)
                 local HRP_Position, On_Screen = Camera:WorldToViewportPoint(HumanoidRootPart.Position)
                 local Stud_Distance, Meter_Distance = math.floor(HRP_Position.Z + 0.5), math.floor(HRP_Position.Z / 3.5714285714 + 0.5)
 
@@ -337,8 +337,8 @@ do -- Player Metatable
                     end
                 end
 
-                local Box_Size = Framework:Round_V2(Vector2.new(X_Minimal - X_Maximal, Y_Minimal - Y_Maximal))
-                local Box_Position = Framework:Round_V2(Vector2.new(X_Maximal + Box_Size.X / X_Minimal, Y_Maximal + Box_Size.Y / Y_Minimal))
+                local Box_Size = VisualKit:Round_V2(Vector2.new(X_Minimal - X_Maximal, Y_Minimal - Y_Maximal))
+                local Box_Position = VisualKit:Round_V2(Vector2.new(X_Maximal + Box_Size.X / X_Minimal, Y_Maximal + Box_Size.Y / Y_Minimal))
                 local Good = false
 
                 if ESP.Settings.Team_Check then
@@ -377,7 +377,7 @@ do -- Player Metatable
                     Box.Size = Box_Size
                     Box.Position = Box_Position
                     Box.Color = Is_Highlighted and Highlight_Color or Box_Settings.Color
-                    Box.Transparency = Framework:Drawing_Transparency(Box_Settings.Transparency)
+                    Box.Transparency = VisualKit:Drawing_Transparency(Box_Settings.Transparency)
                     Box.Visible = Box_Settings.Enabled
 
                     local Box_Outline_Settings = ESP.Settings.Box_Outline
@@ -385,7 +385,7 @@ do -- Player Metatable
                     Box_Outline.Position = Box_Position
                     Box_Outline.Color = Box_Outline_Settings.Color
                     Box_Outline.Thickness = Box_Outline_Settings.Outline_Size + 2
-                    Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
+                    Box_Outline.Transparency = VisualKit:Drawing_Transparency(Box_Outline_Settings.Transparency)
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
 
                     local Image_Settings = ESP.Settings.Image
@@ -466,11 +466,11 @@ do -- Player Metatable
                     end
                     Name.Color = Is_Highlighted and Highlight_Color or Name_Settings.Color
                     Name.OutlineColor = Name_Settings.OutlineColor
-                    Name.Transparency = Framework:Drawing_Transparency(Name_Settings.Transparency)
+                    Name.Transparency = VisualKit:Drawing_Transparency(Name_Settings.Transparency)
                     Name.Visible = Name_Settings.Enabled
                     NameBold.Color = Is_Highlighted and Highlight_Color or Name_Settings.Color
                     NameBold.OutlineColor = Name_Settings.OutlineColor
-                    NameBold.Transparency = Framework:Drawing_Transparency(Name_Settings.Transparency)
+                    NameBold.Transparency = VisualKit:Drawing_Transparency(Name_Settings.Transparency)
                     NameBold.Position = Name.Position + Vector2.new(1, 0)
                     NameBold.Visible = Name.Visible and ESP.Settings.Bold_Text
 
@@ -501,12 +501,12 @@ do -- Player Metatable
                     Distance.Text = Meter_Distance.."m"
                     Distance.Color = Is_Highlighted and Highlight_Color or Distance_Settings.Color
                     Distance.OutlineColor = Distance_Settings.OutlineColor
-                    Distance.Transparency = Framework:Drawing_Transparency(Distance_Settings.Transparency)
+                    Distance.Transparency = VisualKit:Drawing_Transparency(Distance_Settings.Transparency)
                     Distance.Visible = Distance_Settings.Enabled
                     DistanceBold.Text = Meter_Distance.."m"
                     DistanceBold.Color = Is_Highlighted and Highlight_Color or Distance_Settings.Color
                     DistanceBold.OutlineColor = Distance_Settings.OutlineColor
-                    DistanceBold.Transparency = Framework:Drawing_Transparency(Distance_Settings.Transparency)
+                    DistanceBold.Transparency = VisualKit:Drawing_Transparency(Distance_Settings.Transparency)
                     DistanceBold.Position = Distance.Position + Vector2.new(1, 0)
                     DistanceBold.Visible = Distance.Visible and ESP.Settings.Bold_Text
 
@@ -537,12 +537,12 @@ do -- Player Metatable
                     Tool.Text = tool_name
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
-                    Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
+                    Tool.Transparency = VisualKit:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
                     ToolBold.Text = tool_name
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
-                    ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
+                    ToolBold.Transparency = VisualKit:Drawing_Transparency(Tool_Settings.Transparency)
                     ToolBold.Position = Tool.Position + Vector2.new(1, 0)
                     ToolBold.Visible = Tool.Visible and ESP.Settings.Bold_Text
           
@@ -574,12 +574,12 @@ do -- Player Metatable
                     Health.Text = tostring(math.floor(Current_Health + 0.5))
                     Health.Color = Health_Lerp_Color
                     Health.OutlineColor = Health_Settings.OutlineColor
-                    Health.Transparency = Framework:Drawing_Transparency(Health_Settings.Transparency)
+                    Health.Transparency = VisualKit:Drawing_Transparency(Health_Settings.Transparency)
                     Health.Visible = Health_Settings.Enabled
                     HealthBold.Text = tostring(math.floor(Current_Health + 0.5))
                     HealthBold.Color = Health_Lerp_Color
                     HealthBold.OutlineColor = Health_Settings.OutlineColor
-                    HealthBold.Transparency = Framework:Drawing_Transparency(Health_Settings.Transparency)
+                    HealthBold.Transparency = VisualKit:Drawing_Transparency(Health_Settings.Transparency)
                     HealthBold.Position = Health.Position + Vector2.new(1, 0)
                     HealthBold.Visible = Health.Visible and ESP.Settings.Bold_Text
 
@@ -732,7 +732,7 @@ do  -- Object Metatable
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance then
             -- Name
             Name.Text = self.Name .. " [" .. math.floor(Vector.Z / 3.5714285714 + 0.5) .. "m]"
-            Name.Position = Framework:V3_To_V2(Vector)
+            Name.Position = VisualKit:V3_To_V2(Vector)
             Name.Visible = true
 
             -- Addition
@@ -768,26 +768,26 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2})
-        Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1})
-        Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
-        Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
-        Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
-        Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = Drawing.Fonts.System, Size = 13, Center = true})
-        Components.Distance = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
-        Components.DistanceBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
-        Components.Tool = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
-        Components.ToolBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
-        Components.Health = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
-        Components.HealthBold = Framework:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
-        Components.Image = Framework:Draw("Image", {Data = self.Settings.Image.Raw})
-        Components.WeaponIcon = Framework:Draw("Image", {Data = Images["Hands"]})
+        Components.Box = VisualKit:Draw("Square", {Thickness = 1, ZIndex = 2})
+        Components.Box_Outline = VisualKit:Draw("Square", {Thickness = 3, ZIndex = 1})
+        Components.Healthbar = VisualKit:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
+        Components.Healthbar_Outline = VisualKit:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
+        Components.Name = VisualKit:Draw("Text", {Text = Instance.Name, Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
+        Components.NameBold = VisualKit:Draw("Text", {Text = Instance.Name, Font = Drawing.Fonts.System, Size = 13, Center = true})
+        Components.Distance = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
+        Components.DistanceBold = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
+        Components.Tool = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
+        Components.ToolBold = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
+        Components.Health = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Outline = true, Center = true})
+        Components.HealthBold = VisualKit:Draw("Text", {Font = Drawing.Fonts.System, Size = 13, Center = true})
+        Components.Image = VisualKit:Draw("Image", {Data = self.Settings.Image.Raw})
+        Components.WeaponIcon = VisualKit:Draw("Image", {Data = Images["Hands"]})
 
         for _, partName in ipairs(ESP.SkelParts) do
         
-        Components[partName .. "Outline"] = Framework:Draw("Line", {Visible = false,Thickness = 3,Transparency = 1,Color = Color3.new(0, 0, 0)})
+        Components[partName .. "Outline"] = VisualKit:Draw("Line", {Visible = false,Thickness = 3,Transparency = 1,Color = Color3.new(0, 0, 0)})
 
-        Components[partName] = Framework:Draw("Line", {Visible = false,Thickness = 2,Transparency = 1,Color = Color3.new(1, 1, 1)})
+        Components[partName] = VisualKit:Draw("Line", {Visible = false,Thickness = 2,Transparency = 1,Color = Color3.new(1, 1, 1)})
 
         end
         
@@ -824,8 +824,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Name = Framework:Draw("Text", {Text = Object.Name, Color = col, Font.new(Font:GetRegistry("pixel_font")), Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Addition = Framework:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font.new(Font:GetRegistry("pixel_font")), Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font.new(Font:GetRegistry("pixel_font")), Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font.new(Font:GetRegistry("pixel_font")), Size = 13, Outline = out, Center = true, Transparency = trans})
         self.Objects[Instance] = Object
         return Object
     end
@@ -833,7 +833,7 @@ end
 
 -- China Hat
 for i = 1, 30 do
-    ESP.China_Hat[i] = {Framework:Draw('Line', {Visible = false}), Framework:Draw('Triangle', {Visible = false})}
+    ESP.China_Hat[i] = {VisualKit:Draw('Line', {Visible = false}), VisualKit:Draw('Triangle', {Visible = false})}
     ESP.China_Hat[i][1].ZIndex = 2;
     ESP.China_Hat[i][1].Thickness = 2;
     ESP.China_Hat[i][2].ZIndex = 1;
@@ -867,15 +867,15 @@ local Connection = RunService.RenderStepped:Connect(function()
                 Line.From = Vector2.new(lastScreen.X, lastScreen.Y);
                 Line.To = Vector2.new(nextScreen.X, nextScreen.Y);
                 Line.Color = China_Hat_Settings.Color
-                Line.Transparency = Framework:Drawing_Transparency(China_Hat_Settings.Transparency)
+                Line.Transparency = VisualKit:Drawing_Transparency(China_Hat_Settings.Transparency)
                 Triangle.PointA = Vector2.new(topScreen.X, topScreen.Y);
                 Triangle.PointB = Line.From;
                 Triangle.PointC = Line.To;
                 Triangle.Color = China_Hat_Settings.Color
-                Triangle.Transparency = Framework:Drawing_Transparency(China_Hat_Settings.Transparency)
+                Triangle.Transparency = VisualKit:Drawing_Transparency(China_Hat_Settings.Transparency)
             end
         end
     end
 end)
 
-return ESP, Connection, Framework
+return ESP, Connection, VisualKit
