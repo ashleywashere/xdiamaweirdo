@@ -12,7 +12,7 @@ local function Lerp(a, b, t)
 end
 
 local function LerpColor(color1, color2, t)
-    return Color3.new(
+      return Color3.new(
         Lerp(color1.R, color2.R, t),
         Lerp(color1.G, color2.G, t),
         Lerp(color1.B, color2.B, t)
@@ -401,7 +401,10 @@ do -- Player Metatable
                     local Healthbar_Settings = ESP.Settings.Healthbar
                     local Healthbar_Enabled = Healthbar_Settings.Enabled
                     local Healthbar_Position = Healthbar_Settings.Position
-                    local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh,Color3.new(1 - (Current_Health / Health_Maximum), Current_Health / Health_Maximum, 0),0.1)
+
+                   local Health_Percent = Current_Health / Health_Maximum
+                   local Health_Lerp_Color = LerpColor(Healthbar_Settings.ColorHigh, Color3.new(1 - Health_Percent, Health_Percent, 0), 0.1)
+                    
                     if Healthbar_Enabled then
                         if Healthbar_Position == "Left" then
                             Healthbar.Size = Health_Left_Size_Fill;
