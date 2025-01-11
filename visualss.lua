@@ -62,7 +62,7 @@ local VisualKit = {}; VisualKit.__index = VisualKit; do
 end
 
 local Images = {
-    ["Bow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png",
+    ["Wooden Bow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png",
     ["Salvaged AK"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png",
     ["Sleeping Bag"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png",
     ["Hammer"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png",
