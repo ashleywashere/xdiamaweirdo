@@ -75,6 +75,10 @@ local Images = {
     ["Small Medkit"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SmallMedkit.png",
     ["Bandage"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Bandage.png",
     ["Metal Barricade"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MetalBarricade.png",
+    
+    
+    -- extra
+    ["dot"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/dot.png",
     ["Hands"] = "" -- No image for "Hands"
 }
 
