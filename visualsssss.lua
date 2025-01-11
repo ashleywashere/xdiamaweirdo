@@ -737,11 +737,10 @@ do  -- Object Metatable
     end
     function Object_Metatable:Update()
         local Name = self.Components.Name
-        local Addition = self.Components.Addition
-
+        
         if not ESP.Settings.Objects_Enabled then
             Name.Visible = false
-            Addition.Visible = false
+  
             return
         end
 
@@ -755,16 +754,8 @@ do  -- Object Metatable
             Name.Position = VisualKit:V3_To_V2(Vector)
             Name.Visible = true
 
-            -- Addition
-            if self.Addition.Text ~= "" then
-                Addition.Position = Name.Position + Vector2.new(0, Name.TextBounds.Y)
-                Addition.Visible = true
-            else
-                Addition.Visible = false
-            end
         else
             Name.Visible = false
-            Addition.Visible = false
             return
         end
     end
@@ -818,7 +809,7 @@ do -- ESP Functions
     function ESP:Object(Instance, Data)
         if Data == nil or type(Data) ~= "table" then
         end
-        local Addition = Data.Addition or Data.addition or Data.add or Data.Add or ""
+        local Addition = Data.Addition or Data.addition or Data.add or Data.Add or {}
         if Addition.Text == nil then
             Addition.Text = Addition.text or ""
         end
@@ -845,7 +836,6 @@ do -- ESP Functions
         end
         local Components = Object.Components
         Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
         self.Objects[Instance] = Object
         return Object
     end
