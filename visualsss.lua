@@ -79,12 +79,38 @@ local Images = {
 }
 
 local CachedImages = {}
-for name, url in pairs(Images) do
+local LoadingQueue = {}
+
+local function AsyncLoadImage(name, url)
     if url ~= "" then
-        CachedImages[name] = game:HttpGet(url)
+        -- Add to loading queue
+        table.insert(LoadingQueue, coroutine.create(function()
+            local success, result = pcall(function() return game:HttpGet(url) end)
+            if success then
+                CachedImages[name] = result
+            else
+                CachedImages[name] = "" -- Fallback in case of error
+                warn("Failed to load image:", name, result)
+            end
+        end))
+    else
+        CachedImages[name] = "" -- No image for "Hands"
     end
 end
 
+-- Start loading all images asynchronously
+for name, url in pairs(Images) do
+    AsyncLoadImage(name, url)
+end
+
+-- Run the loading queue with slight delays to avoid freezing
+spawn(function()
+    while #LoadingQueue > 0 do
+        local thread = table.remove(LoadingQueue, 1)
+        coroutine.resume(thread)
+        wait(0.1) -- Small delay between each load to prevent lag spikes
+    end
+end)
 
 local ESP; ESP = {
     Settings = {
@@ -171,14 +197,19 @@ function ESP:Get_Character(Player)
 end
 
 function ESP:Get_Tool(Player, WeaponIcon)
-    -- Retrieve cached image instead of fetching from URL
     local toolName = "Hands"
-    local toolIcon = CachedImages["Hands"]
+    local toolIcon = CachedImages["Hands"] or "" -- Use cached image or fallback
+
     local Character = self:Get_Character(Player)
     if Character then
         for _, Tool in pairs(Character:GetChildren()) do
-            if Tool:IsA("Model") and CachedImages[Tool.Name] then
-                toolName, toolIcon = Tool.Name, CachedImages[Tool.Name]
+            if Tool:IsA("Model") then
+                if CachedImages[Tool.Name] then
+                    toolName, toolIcon = Tool.Name, CachedImages[Tool.Name]
+                else
+                    -- Return a placeholder or empty icon if still loading
+                    toolName, toolIcon = Tool.Name, ""
+                end
             end
         end
     end
