@@ -125,7 +125,7 @@ local ESP; ESP = {
         Maximal_Distance = 1000,
         Object_Maximal_Distance = 1000,
         Highlight = {Enabled = false, Color = Color3.new(1, 0, 0), Target = ""},
-        DroppedItems = {Dot = false, Icon = false},
+        DroppedItems = {Dot = false, Icon = false, Text = false},
         WeaponIcon = {Enabled = false, Position = "Bottom"},
         Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
@@ -765,7 +765,7 @@ do  -- Object Metatable
 
                 Name.Text = self.Name
                 Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -34, 0))
-                Name.Visible = true
+                Name.Visible = ESP.Settings.DroppedItems.Text 
 
                 if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector2.new(0, 17))
@@ -773,12 +773,12 @@ do  -- Object Metatable
                 else
                 Name.Text = self.Name
                 Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -27, 0))
-                Name.Visible = true 
+                Name.Visible = ESP.Settings.DroppedItems.Text  
                 end
             else
                 Name.Text = self.Name
                 Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -17, 0))
-                Name.Visible = true
+                Name.Visible = ESP.Settings.DroppedItems.Text 
 
                 if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector)
@@ -786,7 +786,7 @@ do  -- Object Metatable
                 else
                     Name.Text = self.Name
                     Name.Position = VisualKit:V3_To_V2(Vector)
-                    Name.Visible = true 
+                    Name.Visible = ESP.Settings.DroppedItems.Text 
                 end
             end
 
