@@ -62,21 +62,29 @@ local VisualKit = {}; VisualKit.__index = VisualKit; do
 end
 
 local Images = {
-    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
-    ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
-    ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
-    ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
-    ["Blueprint"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png"),
-    ["Crossbow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Crossbow.png"),
-    ["Military Barrett"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryBarrett.png"),
-    ["Military M4A1"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryM4A1.png"),
-    ["Salvaged AK74u"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedAK74u.png"),
-    ["Salvaged SMG"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedSMG.png"),
-    ["Small Medkit"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SmallMedkit.png"),
-    ["Bandage"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Bandage.png"),
-    ["Metal Barricade"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MetalBarricade.png"),
+    ["Bow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png",
+    ["Salvaged AK"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png",
+    ["Sleeping Bag"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png",
+    ["Hammer"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png",
+    ["Blueprint"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png",
+    ["Crossbow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Crossbow.png",
+    ["Military Barrett"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryBarrett.png",
+    ["Military M4A1"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryM4A1.png",
+    ["Salvaged AK74u"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedAK74u.png",
+    ["Salvaged SMG"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedSMG.png",
+    ["Small Medkit"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SmallMedkit.png",
+    ["Bandage"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Bandage.png",
+    ["Metal Barricade"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MetalBarricade.png",
     ["Hands"] = "" -- No image for "Hands"
 }
+
+local CachedImages = {}
+for name, url in pairs(Images) do
+    if url ~= "" then
+        CachedImages[name] = game:HttpGet(url)
+    end
+end
+
 
 local ESP; ESP = {
     Settings = {
@@ -163,18 +171,18 @@ function ESP:Get_Character(Player)
 end
 
 function ESP:Get_Tool(Player, WeaponIcon)
-    if self.Overrides.Get_Tool ~= nil then
-        return self.Overrides.Get_Tool(Player)
-    end
+    -- Retrieve cached image instead of fetching from URL
+    local toolName = "Hands"
+    local toolIcon = CachedImages["Hands"]
     local Character = self:Get_Character(Player)
     if Character then
         for _, Tool in pairs(Character:GetChildren()) do
-            if Tool:IsA("Model") and Images[Tool.Name] then
-                return Tool.Name, Images[Tool.Name] -- Return tool name and image URL
+            if Tool:IsA("Model") and CachedImages[Tool.Name] then
+                toolName, toolIcon = Tool.Name, CachedImages[Tool.Name]
             end
         end
     end
-    return "Hands", Images["Hands"] -- Fallback to "Hands"
+    return toolName, toolIcon
 end
 
 function ESP:Get_Health(Player)
@@ -342,8 +350,7 @@ do -- Player Metatable
                 if ESP.Settings.Enabled and On_Screen and Meter_Distance < ESP.Settings.Maximal_Distance and Good then
 
                     local tool_name, tool_icon = ESP:Get_Tool(self.Player,WeaponIcon)
---game:HttpGet(
-                    print(tool_icon)
+
                     
                      if not self.Components.last_tool_icon then
                         self.Components.last_tool_icon = nil
