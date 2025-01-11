@@ -759,7 +759,7 @@ do  -- Object Metatable
             -- Name
 
 
-            if self.Components.Icon then
+            if self.Components.Icon and ESP.Settings.DroppedItems.Icon then
                 self.Components.Icon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.Icon.Visible = true
 
@@ -767,7 +767,7 @@ do  -- Object Metatable
                 Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -34, 0))
                 Name.Visible = true
 
-                if self.Components.DotIcon then
+                if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector2.new(0, 17))
                 self.Components.DotIcon.Visible = true
                 end
@@ -776,7 +776,7 @@ do  -- Object Metatable
                 Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -17, 0))
                 Name.Visible = true
 
-                if self.Components.DotIcon then
+                if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.DotIcon.Visible = true
                 end
