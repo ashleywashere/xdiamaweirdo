@@ -746,7 +746,7 @@ do  -- Object Metatable
         end
 
         local Vector, On_Screen = Camera:WorldToViewportPoint(self.PrimaryPart.Position + Vector3.new(0, 1, 0))
-        local iconVector = Vector2.new(Vector.X/2,Vector.Y)
+        local iconVector = Vector2.new(Vector.X-3,Vector.Y)
         
         local Meter_Distance = math.floor(Vector.Z / 3.5714285714 + 0.5)
 
