@@ -67,6 +67,11 @@ local Images = {
     ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
     ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
     ["Blueprint"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png"),
+    ["Crossbow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Crossbow.png"),
+    ["Military Barrett"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryBarrett.png"),
+    ["Military M4A1"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryM4A1.png"),
+    ["Salvaged AK74u"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedAK74u.png"),
+    ["Salvaged SMG"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedSMG.png"),
     ["Hands"] = ""
 }
 
