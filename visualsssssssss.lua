@@ -836,7 +836,7 @@ do -- ESP Functions
         local col = Data.Color or Data.color or Data.col or Data.Col or Color3.new(1, 1, 1)
         local out = Data.outline or Data.Outline or false
         local trans = Data.trans or Data.Trans or Data.Transparency or Data.transparency or Data.Alpha or Data.alpha or 1
-        local iconUrl = Images[obj.Name] or Images["Hands"] -- Get icon or default to "Hands"
+        local iconUrl = Images[Instance.Name] or Images["Hands"] -- Get icon or default to "Hands"
 
         local Object = setmetatable({
             Object = obj,
