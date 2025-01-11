@@ -6,7 +6,6 @@ local Players = cloneref(game:GetService("Players"))
 local LocalPlayer = cloneref(Players.LocalPlayer)
 local RunService = cloneref(game:GetService("RunService"))
 local CoreGui = cloneref(game:GetService("CoreGui"))
-local ContentProvider = game:GetService("ContentProvider")
 
 local function Lerp(a, b, t)
     return a + (b - a) * t
@@ -63,30 +62,21 @@ local VisualKit = {}; VisualKit.__index = VisualKit; do
 end
 
 local Images = {
-    ["Bow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png",
-    ["Salvaged AK"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png",
-    ["Sleeping Bag"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png",
-    ["Hammer"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png",
-    ["Blueprint"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png",
-    ["Crossbow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Crossbow.png",
-    ["Military Barrett"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryBarrett.png",
-    ["Military M4A1"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryM4A1.png",
-    ["Salvaged AK74u"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedAK74u.png",
-    ["Salvaged SMG"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedSMG.png",
-    ["Small Medkit"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SmallMedkit.png",
-    ["Bandage"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Bandage.png",
-    ["Metal Barricade"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MetalBarricade.png",
+    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
+    ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
+    ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
+    ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
+    ["Blueprint"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png"),
+    ["Crossbow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Crossbow.png"),
+    ["Military Barrett"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryBarrett.png"),
+    ["Military M4A1"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MilitaryM4A1.png"),
+    ["Salvaged AK74u"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedAK74u.png"),
+    ["Salvaged SMG"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SalvagedSMG.png"),
+    ["Small Medkit"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SmallMedkit.png"),
+    ["Bandage"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Bandage.png"),
+    ["Metal Barricade"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/MetalBarricade.png"),
     ["Hands"] = "" -- No image for "Hands"
 }
-
-local assetsToPreload = {}
-for key, url in pairs(Images) do
-    if url ~= "" then
-        table.insert(assetsToPreload, url)
-    end
-end
-
-ContentProvider:PreloadAsync(assetsToPreload)
 
 local ESP; ESP = {
     Settings = {
