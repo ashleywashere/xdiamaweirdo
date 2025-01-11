@@ -62,7 +62,7 @@ local VisualKit = {}; VisualKit.__index = VisualKit; do
 end
 
 local Images = {
-    ["Bow"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
+    ["Wooden Bow"] = rbxassetid://15313266356, --game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png"),
     ["Salvaged AK"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png"),
     ["Sleeping Bag"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png"),
     ["Hammer"] = game:HttpGet("https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png"),
