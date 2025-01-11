@@ -63,7 +63,7 @@ end
 
 local Images = {
     ["Wooden Bow"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/bow.png",
-    ["Salvaged AK"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png",
+    ["Salvaged AK47"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/ak47.png",
     ["Sleeping Bag"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/SleepingBag.png",
     ["Hammer"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Hammer.png",
     ["Blueprint"] = "https://raw.githubusercontent.com/ashleywashere/xdiamaweirdo/refs/heads/main/imgs/Blueprint.png",
@@ -207,7 +207,7 @@ function ESP:Get_Tool(Player, WeaponIcon)
                     toolName, toolIcon = Tool.Name, CachedImages[Tool.Name]
                 else
                     -- Return a placeholder or empty icon if still loading
-                    toolName, toolIcon = Tool.Name, ""
+                    toolName, toolIcon = "Hands", ""
                 end
             end
         end
