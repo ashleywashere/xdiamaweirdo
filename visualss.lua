@@ -837,6 +837,7 @@ do -- ESP Functions
         local out = Data.outline or Data.Outline or false
         local trans = Data.trans or Data.Trans or Data.Transparency or Data.transparency or Data.Alpha or Data.alpha or 1
         local iconUrl = CachedImages[Instance.Name]-- or CachedImages["Hands"] -- Get icon or default to "Hands"
+        print(iconUrl)
         
         local Object = setmetatable({
             Object = obj,
