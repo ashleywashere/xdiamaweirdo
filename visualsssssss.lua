@@ -764,6 +764,12 @@ do  -- Object Metatable
                 self.Components.Icon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.Icon.Visible = true
             end
+
+            if self.Components.DotIcon then
+                self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector3.new(0, 17, 0))
+                self.Components.DotIcon.Visible = true
+            end
+            
             
             -- Addition
             if self.Addition.Text ~= "" then
@@ -776,6 +782,8 @@ do  -- Object Metatable
             if not Name then return end
             Name.Visible = false
             Addition.Visible = false
+            self.Components.Icon.Visible = false
+            self.Components.DotIcon.Visible = false
             return
         end
     end
@@ -860,11 +868,15 @@ do -- ESP Functions
         local Components = Object.Components
         Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
         Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
+        
         if iconUrl ~= Images["Hands"] then
         Components.Icon = VisualKit:Draw("Image", {Data = game:HttpGet(iconUrl), Size = Vector2.new(25, 25)}) -- Icon component
         else
         Components.Icon = VisualKit:Draw("Image", {Data = nil, Size = Vector2.new(25, 25)}) -- Icon component
         end
+
+        Components.DotIcon = VisualKit:Draw("Image", {Data = game:HttpGet(Images["dot"]), Size = Vector2.new(25, 25)}) -- Icon component
+        
         self.Objects[Instance] = Object
         return Object
     end
