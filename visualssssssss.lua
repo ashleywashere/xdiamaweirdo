@@ -755,9 +755,9 @@ do  -- Object Metatable
             Name.Position = VisualKit:V3_To_V2(Vector)
             Name.Visible = true
 
-            if Components.Icon then
-                Components.Icon.Position = Name.Position + Vector2.new(0, Name.TextBounds.Y + 2)
-                Components.Icon.Visible = true
+            if self.Components.Icon then
+                self.Components.Icon.Position = Name.Position + Vector2.new(0, Name.TextBounds.Y + 2)
+                self.Components.Icon.Visible = true
             end
             
             -- Addition
