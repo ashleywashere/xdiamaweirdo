@@ -766,7 +766,7 @@ do  -- Object Metatable
             end
 
             if self.Components.DotIcon then
-                self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector3.new(0, 17, 0))
+                self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector2.new(0, 17))
                 self.Components.DotIcon.Visible = true
             end
             
