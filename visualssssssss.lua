@@ -746,7 +746,8 @@ do  -- Object Metatable
         end
 
         local Vector, On_Screen = Camera:WorldToViewportPoint(self.PrimaryPart.Position + Vector3.new(0, 1, 0))
-
+        local iconVector = Vector2.new(Vector.X/2,Vector.Y)
+        
         local Meter_Distance = math.floor(Vector.Z / 3.5714285714 + 0.5)
 
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance and Name then
@@ -756,7 +757,7 @@ do  -- Object Metatable
             Name.Visible = true
 
             if self.Components.Icon then
-                self.Components.Icon.Position = VisualKit:V3_To_V2(Vector.X,Vector.Y)
+                self.Components.Icon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.Icon.Visible = true
             end
             
