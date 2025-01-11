@@ -763,6 +763,7 @@ do  -- Object Metatable
                 Addition.Visible = false
             end
         else
+            if not Name then return end
             Name.Visible = false
             Addition.Visible = false
             return
