@@ -818,7 +818,7 @@ do -- ESP Functions
     function ESP:Object(Instance, Data)
         if Data == nil or type(Data) ~= "table" then
         end
-        local Addition = Data.Addition or Data.addition or Data.add or Data.Add or {}
+        local Addition = Data.Addition or Data.addition or Data.add or Data.Add or ""
         if Addition.Text == nil then
             Addition.Text = Addition.text or ""
         end
