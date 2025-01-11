@@ -836,8 +836,7 @@ do -- ESP Functions
         local col = Data.Color or Data.color or Data.col or Data.Col or Color3.new(1, 1, 1)
         local out = Data.outline or Data.Outline or false
         local trans = Data.trans or Data.Trans or Data.Transparency or Data.transparency or Data.Alpha or Data.alpha or 1
-        local iconUrl = CachedImages[Instance.Name] or CachedImages["Hands"] -- Get icon or default to "Hands"
-        print(iconUrl)
+        local iconUrl = CachedImages[Instance.Name]-- or CachedImages["Hands"] -- Get icon or default to "Hands"
         
         local Object = setmetatable({
             Object = obj,
@@ -856,7 +855,7 @@ do -- ESP Functions
         local Components = Object.Components
         Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
         Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Icon = VisualKit:Draw("Image", {Data = iconUrl, Size = Vector2.new(30, 30), Transparency = trans}) -- Icon component
+        Components.Icon = VisualKit:Draw("Image", {Data = iconUrl, Size = Vector2.new(30, 30)}) -- Icon component
 
         self.Objects[Instance] = Object
         return Object
