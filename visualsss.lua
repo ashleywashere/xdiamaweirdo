@@ -1,11 +1,11 @@
     
 -- Services
-local Workspace = cloneref(game:GetService("Workspace"))
-local Camera = cloneref(Workspace.CurrentCamera)
-local Players = cloneref(game:GetService("Players"))
-local LocalPlayer = cloneref(Players.LocalPlayer)
-local RunService = cloneref(game:GetService("RunService"))
-local CoreGui = cloneref(game:GetService("CoreGui"))
+local Workspace = game:GetService("Workspace")
+local Camera = Workspace.CurrentCamera
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
 
 local function Lerp(a, b, t)
     return a + (b - a) * t
