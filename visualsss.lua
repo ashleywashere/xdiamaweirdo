@@ -6,7 +6,7 @@ local Players = cloneref(game:GetService("Players"))
 local LocalPlayer = cloneref(Players.LocalPlayer)
 local RunService = cloneref(game:GetService("RunService"))
 local CoreGui = cloneref(game:GetService("CoreGui"))
-local ContentProvider = cloneref(game:GetService("ContentProvider"))
+local ContentProvider = game:GetService("ContentProvider")
 
 local function Lerp(a, b, t)
     return a + (b - a) * t
@@ -178,19 +178,13 @@ function ESP:Get_Tool(Player, WeaponIcon)
     end
     local Character = self:Get_Character(Player)
     if Character then
-
-        for i, v in pairs(Character:GetChildren()) do
-
-            if v:IsA("Model") and Images[v.Name] then
-
-                return v.Name, Images[v.Name]
-                
+        for _, Tool in pairs(Character:GetChildren()) do
+            if Tool:IsA("Model") and Images[Tool.Name] then
+                return Tool.Name, Images[Tool.Name] -- Return tool name and image URL
             end
         end
-        
     end
-
-    return "Hands", Images["Hands"]
+    return "Hands", Images["Hands"] -- Fallback to "Hands"
 end
 
 function ESP:Get_Health(Player)
