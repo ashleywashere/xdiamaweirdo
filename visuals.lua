@@ -893,6 +893,8 @@ do -- ESP Functions
 
         if ESP.Settings.DroppedItems.Dot then
         Components.DotIcon = VisualKit:Draw("Image", {Data = game:HttpGet(Images["dot"]), Size = Vector2.new(25, 25)}) -- Icon component
+        else
+        Components.DotIcon = VisualKit:Draw("Image", {Data = nil, Size = Vector2.new(25, 25)}) -- Icon component
         end
         
         self.Objects[Instance] = Object
