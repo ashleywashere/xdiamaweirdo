@@ -180,11 +180,11 @@ function ESP:Get_Tool(Player, WeaponIcon)
     if Character then
         for _, Tool in pairs(Character:GetChildren()) do
             if Tool:IsA("Model") and Images[Tool.Name] then
-                return Tool.Name, Images[Tool.Name] -- Return tool name and image URL
+                return Tool.Name, game:HttpGet(Images[Tool.Name]) -- Return tool name and image URL
             end
         end
     end
-    return "Hands", Images["Hands"] -- Fallback to "Hands"
+    return "Hands", game:HttpGet(Images["Hands"]) -- Fallback to "Hands"
 end
 
 function ESP:Get_Health(Player)
