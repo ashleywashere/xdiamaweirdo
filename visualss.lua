@@ -753,7 +753,7 @@ do  -- Object Metatable
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance and Name then
             -- Name
             Name.Text = self.Name
-            Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -13, 0))
+            Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -17, 0))
             Name.Visible = true
 
             if self.Components.Icon then
