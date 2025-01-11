@@ -844,8 +844,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font.new(Drawing.Fonts.System), Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font.new(Drawing.Fonts.System), Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = Font.new(Drawing.Fonts.System), Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = Font.new(Drawing.Fonts.System), Size = 13, Outline = out, Center = true, Transparency = trans})
         self.Objects[Instance] = Object
         return Object
     end
