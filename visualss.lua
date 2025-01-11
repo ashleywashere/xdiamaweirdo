@@ -90,7 +90,6 @@ local function AsyncLoadImage(name, url)
                 CachedImages[name] = result
             else
                 CachedImages[name] = "" -- Fallback in case of error
-                warn("Failed to load image:", name, result)
             end
         end))
     else
@@ -108,7 +107,7 @@ spawn(function()
     while #LoadingQueue > 0 do
         local thread = table.remove(LoadingQueue, 1)
         coroutine.resume(thread)
-        wait(0.1) -- Small delay between each load to prevent lag spikes
+        wait(0.05) -- Small delay between each load to prevent lag spikes
     end
 end)
 
@@ -776,7 +775,6 @@ end
 do -- ESP Functions
     function ESP:Player(Instance, Data)
         if Instance == nil then
-            return warn("error: function ESP.Player argument #1 expected Player, got nil")
         end
         if Data == nil or type(Data) ~= "table" then
             Data = {
@@ -822,7 +820,6 @@ do -- ESP Functions
     end
     function ESP:Object(Instance, Data)
         if Data == nil or type(Data) ~= "table" then
-            return warn("error: function ESP.Object argument #2 expected table, got nil")
         end
         local Addition = Data.Addition or Data.addition or Data.add or Data.Add or {}
         if Addition.Text == nil then
