@@ -125,7 +125,7 @@ local ESP; ESP = {
         Maximal_Distance = 1000,
         Object_Maximal_Distance = 1000,
         Highlight = {Enabled = false, Color = Color3.new(1, 0, 0), Target = ""},
-        DroppedItems = {Enabled = false, Dot = false, Icon = false}
+        DroppedItems = {Dot = false, Icon = false}
         WeaponIcon = {Enabled = false, Position = "Bottom"},
         Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
