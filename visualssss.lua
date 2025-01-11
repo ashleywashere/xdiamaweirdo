@@ -751,12 +751,12 @@ do  -- Object Metatable
 
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance and Name then
             -- Name
-            Name.Text = self.Name .. " [" .. math.floor(Vector.Z / 3.5714285714 + 0.5) .. "m]"
-            Name.Position = VisualKit:V3_To_V2(Vector)
+            Name.Text = self.Name
+            Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, 4, 0))
             Name.Visible = true
 
             if self.Components.Icon then
-                self.Components.Icon.Position = Name.Position + Vector2.new(0, Name.TextBounds.Y + 2)
+                self.Components.Icon.Position = VisualKit:V3_To_V2(Vector)
                 self.Components.Icon.Visible = true
             end
             
@@ -836,7 +836,7 @@ do -- ESP Functions
         local col = Data.Color or Data.color or Data.col or Data.Col or Color3.new(1, 1, 1)
         local out = Data.outline or Data.Outline or false
         local trans = Data.trans or Data.Trans or Data.Transparency or Data.transparency or Data.Alpha or Data.alpha or 1
-        local iconUrl = Images[Instance.Name]-- or CachedImages["Hands"] -- Get icon or default to "Hands"
+        local iconUrl = Images[Instance.Name] or CachedImages["Hands"] -- Get icon or default to "Hands"
         print(iconUrl)
         
         local Object = setmetatable({
