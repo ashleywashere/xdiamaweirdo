@@ -770,6 +770,10 @@ do  -- Object Metatable
                 if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector2.new(0, 17))
                 self.Components.DotIcon.Visible = true
+                else
+                Name.Text = self.Name
+                Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -27, 0))
+                Name.Visible = true 
                 end
             else
                 Name.Text = self.Name
@@ -779,6 +783,10 @@ do  -- Object Metatable
                 if self.Components.DotIcon and ESP.Settings.DroppedItems.Dot then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.DotIcon.Visible = true
+                else
+                    Name.Text = self.Name
+                    Name.Position = VisualKit:V3_To_V2(Vector)
+                    Name.Visible = true 
                 end
             end
 
