@@ -125,6 +125,7 @@ local ESP; ESP = {
         Maximal_Distance = 1000,
         Object_Maximal_Distance = 1000,
         Highlight = {Enabled = false, Color = Color3.new(1, 0, 0), Target = ""},
+        DroppedItems = {Enabled = false, Dot = false, Icon = false}
         WeaponIcon = {Enabled = false, Position = "Bottom"},
         Skeleton = {Enabled = false, Outline = false},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
@@ -756,19 +757,32 @@ do  -- Object Metatable
 
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance and Name then
             -- Name
-            Name.Text = self.Name
-            Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -34, 0))
-            Name.Visible = true
+
 
             if self.Components.Icon then
                 self.Components.Icon.Position = VisualKit:V3_To_V2(iconVector)
                 self.Components.Icon.Visible = true
-            end
 
-            if self.Components.DotIcon then
+                Name.Text = self.Name
+                Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -34, 0))
+                Name.Visible = true
+
+                if self.Components.DotIcon then
                 self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector + Vector2.new(0, 17))
                 self.Components.DotIcon.Visible = true
+                end
+            else
+                Name.Text = self.Name
+                Name.Position = VisualKit:V3_To_V2(Vector - Vector3.new(0, -17, 0))
+                Name.Visible = true
+
+                if self.Components.DotIcon then
+                self.Components.DotIcon.Position = VisualKit:V3_To_V2(iconVector)
+                self.Components.DotIcon.Visible = true
+                end
             end
+
+        
             
             
             -- Addition
@@ -868,14 +882,18 @@ do -- ESP Functions
         local Components = Object.Components
         Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
         Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
-        
+
+        if ESP.Settings.DroppedItems.Icon then
         if iconUrl ~= Images["Hands"] then
         Components.Icon = VisualKit:Draw("Image", {Data = game:HttpGet(iconUrl), Size = Vector2.new(25, 25)}) -- Icon component
         else
         Components.Icon = VisualKit:Draw("Image", {Data = nil, Size = Vector2.new(25, 25)}) -- Icon component
         end
+        end
 
+        if ESP.Settings.DroppedItems.Dot then
         Components.DotIcon = VisualKit:Draw("Image", {Data = game:HttpGet(Images["dot"]), Size = Vector2.new(25, 25)}) -- Icon component
+        end
         
         self.Objects[Instance] = Object
         return Object
