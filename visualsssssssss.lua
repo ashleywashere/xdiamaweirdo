@@ -856,8 +856,11 @@ do -- ESP Functions
         local Components = Object.Components
         Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
         Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = Drawing.Fonts.System, Size = 13, Outline = out, Center = true, Transparency = trans})
+        if iconUrl ~= Images["Hands"] then
         Components.Icon = VisualKit:Draw("Image", {Data = game:HttpGet(iconUrl), Size = Vector2.new(30, 30)}) -- Icon component
-
+        else
+        Components.Icon = VisualKit:Draw("Image", {Data = nil, Size = Vector2.new(30, 30)}) -- Icon component
+        end
         self.Objects[Instance] = Object
         return Object
     end
