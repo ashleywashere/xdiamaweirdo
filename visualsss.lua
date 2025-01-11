@@ -749,7 +749,7 @@ do  -- Object Metatable
 
         local Meter_Distance = math.floor(Vector.Z / 3.5714285714 + 0.5)
 
-        if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance then
+        if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance and Name then
             -- Name
             Name.Text = self.Name .. " [" .. math.floor(Vector.Z / 3.5714285714 + 0.5) .. "m]"
             Name.Position = VisualKit:V3_To_V2(Vector)
