@@ -752,7 +752,7 @@ do  -- Object Metatable
         if On_Screen and Meter_Distance < ESP.Settings.Object_Maximal_Distance then
             -- Name
             Name.Text = self.Name .. " [" .. math.floor(Vector.Z / 3.5714285714 + 0.5) .. "m]"
-            Name.Position = Framework:V3_To_V2(Vector)
+            Name.Position = VisualKit:V3_To_V2(Vector)
             Name.Visible = true
 
             -- Addition
@@ -845,8 +845,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Name = Framework:Draw("Text", {Text = Object.Name, Color = col, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
-        Components.Addition = Framework:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Name = VisualKit:Draw("Text", {Text = Object.Name, Color = col, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
+        Components.Addition = VisualKit:Draw("Text", {Text = Object.Addition.Text, Color = Object.Addition.Color, Font = 2, Size = 13, Outline = out, Center = true, Transparency = trans})
         self.Objects[Instance] = Object
         return Object
     end
