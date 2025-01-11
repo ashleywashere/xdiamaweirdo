@@ -205,9 +205,6 @@ function ESP:Get_Tool(Player, WeaponIcon)
             if Tool:IsA("Model") then
                 if CachedImages[Tool.Name] then
                     toolName, toolIcon = Tool.Name, CachedImages[Tool.Name]
-                else
-                    -- Return a placeholder or empty icon if still loading
-                    toolName, toolIcon = "Hands", ""
                 end
             end
         end
