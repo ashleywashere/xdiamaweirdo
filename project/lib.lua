@@ -65,7 +65,7 @@ local library = {
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'oblivion';
+    cheatname = startupArgs.cheatname or 'oblivtiy';
     gamename = startupArgs.gamename or 'fallen';
     fileext = startupArgs.fileext or '.txt';
 }
@@ -4465,7 +4465,7 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"Oblivion", true},
+                {"Oblivtiy", true},
                 {"V1.0", true},
                 {".gg/kg9W5geJ23", true},
                 {'0 fps', true},
